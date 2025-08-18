@@ -1,0 +1,60 @@
+paths:
+  raw_data: "data/raw_data"
+  processed_data: "data/processed_data"
+  pflotran_templates: "templates/pflotran_templates"
+  pest_templates: "templates/pest_templates"
+
+metadata:
+  author: "David Byrne"
+  date_created: "2025-08-12"
+
+expt_conditions:
+  sae1:
+    temp:        150    #degC
+    pres:        75     #bar
+    CO2:         0.0    #ppm
+    rock_mass:   24.29  #g
+    calcite:     1.5e-4 #wt%
+    porosity:    43.01  #%
+    flow_rate:   5      #ml/hr
+    duration:    31     #days
+        
+  sae2:
+    temp:        150    #degC
+    pres:        75     #bar
+    CO2:         0.0    #ppm
+    rock_mass:   24.29  #g
+    calcite:     1.5e-2 #wt%
+    porosity:    46.01  #%
+    flow_rate:   5      #ml/hr
+    duration:    31     #days
+    
+  sae3:
+    temp:        150    #degC
+    pres:        75     #bar
+    CO2:         2000   #ppm
+    rock_mass:   24.30  #g
+    calcite:     1.5e-2 #wt%
+    porosity:    45.20  #%
+    flow_rate:   5      #ml/hr
+    duration:    31     #days
+    
+  sae4:
+    temp:        150    #degC
+    pres:        75     #bar
+    CO2:         600    #ppm
+    rock_mass:   24.30  #g
+    calcite:     1.5e-2 #wt%
+    porosity:    45.20  #%
+    flow_rate:   5      #ml/hr
+    duration:    31     #days
+    
+output_flags:
+  - name: pH
+    line: 161
+  - name: Total_SiO2(aq)
+    line: 173
+  - name: Total_Ca++
+    line: 185
+  
+  

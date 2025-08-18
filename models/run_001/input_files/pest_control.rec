@@ -1,0 +1,401 @@
+             pestpp-glm 5.2.21
+
+    by The PEST++ Development Team
+
+
+
+version: 5.2.21
+binary compiled on Aug 10 2025 at 22:52:35
+
+using control file: "models/run_001/input_files/pest_control.pst"
+
+in directory: "/home/user/sae"
+on host: "pflotran-vm"
+started at 08/18/25 05:18:00
+
+Note: 2 unused lines in pest control file:
+  -->  line number 6: '10 -2 0.3 0.01 10' 
+  -->  line number 10: '0 0 0' 
+
+    This software has been approved for release by the
+    U.S.Geological Survey(USGS).Although the software has 
+    been subjected to rigorous review, the USGS reserves the
+    right to update the software as needed pursuant to further
+    analysisand review.No warranty, expressed or implied, is 
+    made by the USGS or the U.S.Government as to the
+    functionality of the softwareand related material nor shall
+    the fact of release constitute any such warranty.
+    Furthermore, the software is released on condition that
+    neither the USGS nor the U.S.Government shall be held
+    liable for any damages resulting from its authorized 
+    or unauthorized use.
+
+
+pestmode:- 
+   estimation
+
+
+Case dimensions:- 
+    Number of parameters = 7
+    Number of adjustable parameters = 7
+    Number of observations = 62
+    Number of non-zero weighted observations = 62
+    Number of prior estimates = 0
+
+PEST Control Information
+    relparmax = 10
+    facparmax = 10
+    facorig = 0.001
+    phiredswh = 0.1
+    noptmax = 50
+    phiredstp = 0.005
+    nphistp = 4
+    nphinored = 4
+    relparstp = 0.005
+    nrelpar = 4
+
+
+    PEST++ OPTIONS: 
+
+...general options (used in multiple tools): 
+svd_pack: redsvd
+lambda_scale_fac: 0.75,1,1.1,
+forgive_unknown_args: 0
+max_run_fail: 3
+panther_poll_interval: 1
+parameter_covariance: 
+observation_covariance: 
+hotstart_resfile: 
+overdue_resched_fac: 1.15
+overdue_giveup_fac: 100
+overdue_giveup_minutes: 1e+30
+condor_submit_file: 
+tie_by_group: 0
+par_sigma_range: 4
+enforce_tied_bounds: 0
+debug_parse_only: 0
+check_tplins: 1
+fill_tpl_zeros: 0
+tpl_force_decimal: 0
+additional_ins_delimiters: 
+random_seed: 358183147
+num_tpl_ins_threads: 1
+save_binary: 0
+save_dense: 0
+ensemble_output_precision: 20
+panther_echo: 1
+panther_agent_restart_on_error: 0
+panther_agent_no_ping_timeout_secs: -1
+panther_debug_loop: 0
+debug_check_par_en_consistency: 0
+panther_agent_freeze_on_fail: 0
+panther_transfer_on_finish: 
+panther_transfer_on_fail: 
+panther_timeout_milliseconds: -999
+panther_echo_interval_milliseconds: 1000
+
+...pestpp-glm specific options:
+max_n_super: 1000000
+super_eigthresh: 1e-06
+n_iter_base: 1000000
+n_iter_super: 0
+super_relparmax: 0.1
+max_super_frz_iter: 20
+max_reg_iter: 20
+lambdas: 0.1,1,10,100,1000,
+iteration_summary: 1
+der_forgive: 1
+uncertainty: 1
+forecasts: 
+base_jacobian: 
+glm_num_reals: 0
+jac_scale: 1
+glm_normal_form: DIAG
+glm_debug_der_fail: 0
+glm_debug_lamb_fail: 0
+glm_debug_real_fail: 0
+glm_accept_mc_phi: 0
+glm_rebase_super: 0
+glm_iter_mc: 0
+glm_high_2nd_iter_phi: 0
+
+...pestpp-swp options:
+sweep_parameter_csv_file: 
+sweep_output_csv_file: sweep_out.csv
+sweep_chunk: 500
+sweep_forgive: 0
+sweep_base_run: 0
+sweep_include_regul_phi: 0
+
+...pestpp-opt options:
+opt_objective_function: 
+opt_coin_log: 1
+opt_skip_final: 0
+opt_std_weights: 0
+opt_stack_size: 0
+opt_par_stack: 
+opt_obs_stack: 
+opt_decision_variable_groups: 
+opt_external_variable_groups: 
+opt_constraint_groups: 
+opt_risk: 0.5
+opt_iter_derinc_fac: 1
+opt_direction: 1
+opt_iter_tol: 0.001
+opt_recalc_fosm_every: 1
+opt_chance_points: SINGLE
+opt_chance_schedule: 
+
+...pestpp-sqp options:
+sqp_dv_en: 
+sqp_obs_restart_en: 
+sqp_num_reals: -1
+sqp_update_hessian: 0
+sqp_scale_facs:
+  1e-05
+  0.0001
+  0.0005
+  0.001
+  0.0025
+  0.005
+  0.01
+  0.05
+  0.075
+  0.1
+  0.25
+  0.5
+  1
+  2
+  5
+  10
+
+...pestpp-mou options:
+mou_generator: PSO
+mou_population_size: 100
+mou_dv_population_file: 
+mou_obs_population_restart_file: 
+mou_objectives: 
+mou_max_archive_size: 500
+mou_risk_objective: 0
+mou_verbose_level: 1
+mou_env_selector: NSGA
+mou_mating_selector: TOURNAMENT
+mou_crossover_prob: 0.75
+mou_mutation_prob: -999
+mou_de_f: 0.8
+mou_save_population_every: -1
+mou_pso_omega: 0.7
+mou_pso_social_const: 2
+mou_pso_cognitive: 2
+mou_population_schedule: 
+mou_simplex_reflections:10
+mou_simplex_factors: 
+ 0.5
+ 0.6
+ 0.7
+ 0.8
+mou_simplex_mutation: 0
+mou_use_multigen:0
+mou_shuffle_fixed_pars: 0
+
+...shared pestpp-ies/pestpp-da options:
+(note: 'da' args override 'ies' args when using pestpp-da)
+ies_parameter_ensemble: 
+ies_observation_ensemble: 
+ies_weights_ensemble: 
+ies_restart_parameter_ensemble: 
+ies_restart_observation_ensemble: 
+ies_use_approximate_solution: 1
+ies_lambda_mults: 0.1,1,10,
+ies_initial_lambda: 0
+ies_use_approx: 1
+ies_subset_size: -10
+ies_reg_factor: 0
+ies_verbose_level: 1
+ies_use_prior_scaling: 0
+ies_num_reals: 50
+ies_bad_phi: 1.79769e+308
+ies_bad_phi_sigma: 1.79769e+308
+ies_include_base: 1
+ies_use_empirical_prior: 0
+ies_group_draws: 0
+ies_enforce_bounds: 1
+ies_localizer: 
+ies_accept_phi_fac: 1.05
+ies_lambda_inc_fac: 10
+ies_lambda_dec_fac: 0.75
+ies_save_lambda_ensembles: 0
+ies_subset_how: RANDOM
+ies_localize_how: PARAMETERS
+ies_num_threads: -1
+ies_debug_fail_subset: 0
+ies_debug_fail_remainder: 0
+ies_debug_bad_phi: 0
+ies_debug_upgrade_only: 0
+ies_debug_high_subset_phi: 0
+ies_debug_high_upgrade_phi: 0
+ies_csv_by_reals: 1
+ies_autoadaloc: 0
+ies_autoadaloc_sigma_dist: 1
+ies_enforce_chglim: 0
+ies_center_on: 
+ies_no_noise: 0
+ies_drop_conflicts: 0
+ies_save_rescov:0
+ies_pdc_sigma_distance: -1
+ies_use_mda: 0
+ies_mda_init_fac: 10
+ies_mda_dec_fac: 0.5
+ies_localization_type: LOCAL
+ies_upgrades_in_memory: 1
+ies_ordered_binary: 1
+ies_multimodal_alpha: 1
+ies_localizer_forgive_extra: 0
+ies_phi_factors_file: 
+ies_phi_factors_by_real: 0
+ies_n_iter_reinflate: 
+0,
+ies_reinflate_factor: 
+1,
+ies_updatebyreals: 0
+ies_autoadaloc_indicator_pars: 
+
+ies_run_realname: 
+pestpp-sen options: 
+gsa_method: MORRIS
+gsa_morris_pooled_obs: 0
+gsa_morris_obs_sen: 1
+gsa_morris_p: 4
+gsa_morris_r: 4
+gsa_morris_delta: 0.6666
+gsa_sobol_samples: 4
+gsa_sobol_par_dist: norm
+
+pestpp-da options (those not shared with pestpp-ies):
+da_parameter_cycle_table: 
+da_observation_cycle_table: 
+da_hotstart_cycle: 0
+da_stop_cycle: 1000000000
+da_use_simulated_states: 1
+da_noptmax_schedule: 
+
+
+
+Model command line(s):- 
+    python scripts/pflotran_runner.py sae1
+
+Model interface files:-
+    template files:
+      sae1.in.tpl
+    model input files:
+      sae1.in
+
+    instruction files:
+      instr_sae1.ins
+    model output files:
+      results_sae1.txt
+
+
+Parameter group information
+NAME          INCREMENT TYPE     DERIVATIVE INCREMENT    INCREMENT LOWER BOUND  FORCE CENTRAL     INCREMENT MULTIPLIER
+sa                  RELATIVE                     0.01                        0         SWITCH                      1.5
+alpha               RELATIVE                     0.01                        0         SWITCH                      1.5
+sa_vf               RELATIVE                     0.01                        0         SWITCH                      1.5
+vf                  RELATIVE                     0.01                        0         SWITCH                      1.5
+
+
+
+Parameter information
+NAME         TRANSFORMATION        CHANGE LIMIT  INITIAL VALUE    LOWER BOUND    UPPER BOUND        GROUP          SCALE         OFFSET  DERIVATIVE COMMAND
+sio2_alpha   none                  RELATIVE             -1           -1.2           -0.8        alpha              1              0                   1
+sio2_sa      log                     FACTOR          10000            100         100000           sa              1              0                   1
+sio2_sa_vf   none                  RELATIVE            0.5             -1              1        sa_vf              1              0                   1
+sio2_vf      log                     FACTOR          0.001          1e-06           0.01           vf              1              0                   1
+calc_alpha   none                  RELATIVE              1            0.5            1.5        alpha              1              0                   1
+calc_sa      log                     FACTOR            100              1          10000           sa              1              0                   1
+calc_sa_vf   none                  RELATIVE              1             -1              7        sa_vf              1              0                   1
+
+
+
+Observation information
+NAME                                VALUE                GROUP              WEIGHT
+ph_sae1_01                            7.9              ph_sae1                 0.1
+ph_sae1_02                            7.6              ph_sae1                 0.1
+ph_sae1_03                            6.8              ph_sae1                 0.1
+ph_sae1_04                           6.24              ph_sae1                  10
+ph_sae1_05                           6.31              ph_sae1                  10
+ph_sae1_06                           6.24              ph_sae1                  10
+ph_sae1_07                           6.19              ph_sae1                  10
+ph_sae1_08                           6.13              ph_sae1                  10
+ph_sae1_09                           6.13              ph_sae1                  10
+ph_sae1_10                           6.04              ph_sae1                  10
+ph_sae1_11                           5.99              ph_sae1                  10
+ph_sae1_12                              6              ph_sae1                  10
+ph_sae1_13                           5.96              ph_sae1                  10
+ph_sae1_14                           5.91              ph_sae1                  10
+ph_sae1_15                           5.88              ph_sae1                  10
+ph_sae1_16                           5.87              ph_sae1                  10
+ph_sae1_17                           5.82              ph_sae1                  10
+ph_sae1_18                           5.79              ph_sae1                  10
+ph_sae1_19                           5.79              ph_sae1                  10
+ph_sae1_20                           5.72              ph_sae1                  10
+ph_sae1_21                            5.7              ph_sae1                  10
+ph_sae1_22                           5.69              ph_sae1                  10
+ph_sae1_23                            5.7              ph_sae1                  10
+ph_sae1_24                           5.48              ph_sae1                  10
+ph_sae1_25                           5.52              ph_sae1                  10
+ph_sae1_26                           5.68              ph_sae1                  10
+ph_sae1_27                           5.58              ph_sae1                  10
+ph_sae1_28                           5.49              ph_sae1                  10
+ph_sae1_29                           5.59              ph_sae1                  10
+ph_sae1_30                           5.63              ph_sae1                  10
+ph_sae1_31                           5.62              ph_sae1                  10
+sio2_sae1_01                     0.012222            sio2_sae1                 100
+sio2_sae1_02                    0.0124768            sio2_sae1                 100
+sio2_sae1_03                    0.0126568            sio2_sae1                 100
+sio2_sae1_04                    0.0118717            sio2_sae1               10000
+sio2_sae1_05                    0.0119382            sio2_sae1               10000
+sio2_sae1_06                     0.012854            sio2_sae1               10000
+sio2_sae1_07                    0.0129936            sio2_sae1               10000
+sio2_sae1_08                    0.0135363            sio2_sae1               10000
+sio2_sae1_09                     0.013568            sio2_sae1               10000
+sio2_sae1_10                    0.0136445            sio2_sae1               10000
+sio2_sae1_11                     0.013683            sio2_sae1               10000
+sio2_sae1_12                    0.0136876            sio2_sae1               10000
+sio2_sae1_13                    0.0136946            sio2_sae1               10000
+sio2_sae1_14                    0.0136896            sio2_sae1               10000
+sio2_sae1_15                    0.0137396            sio2_sae1               10000
+sio2_sae1_16                    0.0137444            sio2_sae1               10000
+sio2_sae1_17                    0.0137179            sio2_sae1               10000
+sio2_sae1_18                    0.0137626            sio2_sae1               10000
+sio2_sae1_19                    0.0138607            sio2_sae1               10000
+sio2_sae1_20                    0.0138604            sio2_sae1               10000
+sio2_sae1_21                    0.0138894            sio2_sae1               10000
+sio2_sae1_22                    0.0138672            sio2_sae1               10000
+sio2_sae1_23                    0.0138708            sio2_sae1               10000
+sio2_sae1_24                    0.0138762            sio2_sae1               10000
+sio2_sae1_25                    0.0138735            sio2_sae1               10000
+sio2_sae1_26                    0.0139072            sio2_sae1               10000
+sio2_sae1_27                    0.0138832            sio2_sae1               10000
+sio2_sae1_28                    0.0139832            sio2_sae1               10000
+sio2_sae1_29                    0.0140021            sio2_sae1               10000
+sio2_sae1_30                    0.0140348            sio2_sae1               10000
+sio2_sae1_31                    0.0139993            sio2_sae1               10000
+
+
+
+Prior information
+
+   no prior information provided
+
+
+
+PEST SVD Information
+    maxsing = 1000000
+    eigthresh = 1e-06
+
+
+
+
+
+control file parsing error: error in model interface file access:Could not access the following model interface files: instr_sae1.ins , sae1.in.tpl , 
