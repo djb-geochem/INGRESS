@@ -1,5 +1,0 @@
-time,elapsed_seconds,message
-2025-08-18 05:18:00,1.3412e-05,PEST++ performance logger started
-2025-08-18 05:18:00,9.4207e-05,starting to process control file
-2025-08-18 05:18:00,0.000340401,finished processing control file
-2025-08-18 05:18:00,0.000775827,starting basic model IO error checking
