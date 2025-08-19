@@ -15,7 +15,7 @@ restart estimation
 {% endfor %}
 
 * parameter data
-{% for name, param in tuned_parameters.items() -%}
+{% for name, param in tuned_parameters.items() if param.active -%}
 {{ name }} {{ param.partrans }} {{ param.parchglim }} {{ param.parval }} {{ param.parlbnd }} {{ param.parubnd }} {{ param.pargp }} 1 0 1
 {% endfor %}
 
@@ -30,7 +30,7 @@ restart estimation
 {% endfor %}
 
 * model command line
-python scripts/pflotran_runner.py {% for expt in experiments -%} {{ expt }} {% endfor %}
+python ../../utils/run_pflotran.py {% for expt in experiments -%} {{ expt }} {% endfor %}
 
 * model input/output
 {% for expt in experiments -%}

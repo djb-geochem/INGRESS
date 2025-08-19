@@ -1,0 +1,19 @@
+             pestpp-glm 5.2.21
+
+    by The PEST++ Development Team
+
+
+
+version: 5.2.21
+binary compiled on Aug 10 2025 at 22:52:35
+
+using control file: "pest_control.pst"
+
+in directory: "/home/user/sae/utils"
+on host: "pflotran-vm"
+started at 08/19/25 02:12:38
+
+Error processing control file: pest_control.pst
+
+control file stream is not good
+

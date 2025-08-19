@@ -12,7 +12,7 @@ expt_conditions:
   sae1:
     temp:        150    #degC
     pres:        75     #bar
-    CO2:         0.0    #ppm
+    CO2:         10     #ppm
     rock_mass:   24.29  #g
     calcite:     1.5e-4 #wt%
     porosity:    43.01  #%
@@ -22,7 +22,7 @@ expt_conditions:
   sae2:
     temp:        150    #degC
     pres:        75     #bar
-    CO2:         0.0    #ppm
+    CO2:         10     #ppm
     rock_mass:   24.29  #g
     calcite:     1.5e-2 #wt%
     porosity:    46.01  #%

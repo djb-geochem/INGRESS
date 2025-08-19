@@ -42,7 +42,7 @@ tuned_parameters:
     parlbnd:   -1           # lower bound
     parubnd:   1            # upper bound
     pargp:     SA_VF        # parameter group
-    active:    False        # whether parameter is active in model
+    active:    True         # whether parameter is active in model
     default:   0.041        # default value when parameter is inactive
   SiO2_VF:
     partrans:  log          # transformation
@@ -52,7 +52,7 @@ tuned_parameters:
     parubnd:   1e-2         # upper bound
     pargp:     VF           # parameter group
     active:    False        # whether parameter is active in model
-    default:   1e-3         # default value when parameter is inactive
+    default:   1e-2         # default value when parameter is inactive
   Calc_alpha:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -69,7 +69,7 @@ tuned_parameters:
     parlbnd:   1e0          # lower bound
     parubnd:   1e4          # upper bound
     pargp:     SA           # parameter group
-    active:    False        # whether parameter is active in model
+    active:    True         # whether parameter is active in model
     default:   200          # default value when parameter is inactive
   Calc_SA_VF:
     partrans:  none         # transformation
@@ -78,14 +78,14 @@ tuned_parameters:
     parlbnd:   -1           # lower bound
     parubnd:   7            # upper bound
     pargp:     SA_VF        # parameter group
-    active:    False        # whether parameter is active in model
+    active:    True         # whether parameter is active in model
     default:   5            # default value when parameter is inactive
         
 experiments:
   - sae1
-#  - sae2
-#  - sae3
-#  - sae4
+  - sae2
+  - sae3
+  - sae4
 
 fitted_species:
   pH:

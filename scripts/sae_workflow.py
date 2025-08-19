@@ -9,6 +9,7 @@ import sys
 import os
 import pathlib
 from datetime import datetime
+import subprocess
 
 #change sys.path to project root
 PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -18,7 +19,7 @@ os.chdir(PROJECT_ROOT)
 import yaml
 from scripts.input_reader import prepare_inputs
 from scripts.template_writer import write_templates
-# from scripts.model_runner import run_pestpp
+from utils.run_pestpp import run_pestpp
 # from scripts.plotter import plot_figures
 # from scripts.cleanup import cleanup
 
@@ -36,12 +37,12 @@ with open("project_state.yaml") as state_file:
     state = yaml.safe_load(state_file)
 
 # update and dump project state
-state["run_count"] += 0 #change to 1 when project is live!
+state["run_count"] += 1 #change to 1 when project is live!
 run_num = state["run_count"]
 
 run_info = {
     "run id": f"run_{run_num:03d}",
-    "timestamp": datetime.now()
+    "timestamp": datetime.now().isoformat()
         }
 
 state["run_history"].append(run_info)
@@ -58,5 +59,9 @@ run_params["rundir"] = "models/" + str(run_params["runid"])
 # start work
 prepare_inputs(cfg, run_params)
 write_templates(cfg, run_params)
+subprocess.run(["cp", "hanford.dat", run_params["rundir"]])
+os.chdir(run_params["rundir"])
+run_pestpp()
+
 
 
