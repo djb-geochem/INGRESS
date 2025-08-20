@@ -5,10 +5,8 @@ Created on Mon Aug 11 19:57:17 2025
 
 @author: user
 """
-import os
-from pathlib import Path
 
-def prepare_inputs(cfg, run_params):
+def preprocess(cfg, run_params):
     calculate_derived_params(cfg, run_params)
     write_prerun_logs(cfg, run_params)
 

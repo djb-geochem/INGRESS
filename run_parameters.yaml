@@ -22,7 +22,7 @@ tuned_parameters:
     parchglim: relative     # change limiter
     parval:    -1           # starting value
     parlbnd:   -1.2         # lower bound
-    parubnd:   -0.8         # upper bound
+    parubnd:   -0.1         # upper bound
     pargp:     alpha        # parameter group
     active:    True         # whether parameter is active in model
     default:   -0.8         # default value when parameter is inactive
@@ -31,7 +31,7 @@ tuned_parameters:
     parchglim: factor       # change limiter
     parval:    1e4          # starting value
     parlbnd:   1e2          # lower bound
-    parubnd:   1e5          # upper bound
+    parubnd:   1e7          # upper bound
     pargp:     SA           # parameter group
     active:    True         # whether parameter is active in model
     default:   1300         # default value when parameter is inactive
@@ -39,7 +39,7 @@ tuned_parameters:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
     parval:    0.5          # starting value
-    parlbnd:   -1           # lower bound
+    parlbnd:   -5           # lower bound
     parubnd:   1            # upper bound
     pargp:     SA_VF        # parameter group
     active:    True         # whether parameter is active in model
@@ -96,6 +96,10 @@ fitted_species:
     sigma:    1e-4           # estimated uncertainty (used for weighting)
     n_drop:   3              # n dropped at start
     flag:     Total_SiO2(aq) # flag in output files
+  Ca:
+    sigma:    1e-4           # estimated uncertainty (used for weighting)
+    n_drop:   3              # n dropped at start
+    flag:     Total_Ca++     # flag in output files
     
 drop_obs: none
 

@@ -19,7 +19,7 @@ def write_templates(cfg, run_params):
     
     
 def write_pest_control(cfg, run_params, obsdata):
-    template_dir = cfg["paths"]["pest_templates"]
+    template_dir = cfg["paths"]["templates"]
     env = Environment(loader=FileSystemLoader(template_dir))
     template = env.get_template("pest_control.master")
     
@@ -38,7 +38,7 @@ def write_pest_control(cfg, run_params, obsdata):
         f.write(rendered_text)
 
 def write_pflotran_in(cfg, run_params, expt):
-    template_dir = cfg["paths"]["pflotran_templates"]
+    template_dir = cfg["paths"]["templates"]
     env = Environment(loader=FileSystemLoader(template_dir))
     template = env.get_template("pflotran.master")
     
@@ -79,10 +79,6 @@ def write_instructions(cfg, run_params, expt, obsdata):
             ]
             for obs in species_obs:
                 f.write(f"l1 !{obs}!\n")
-            
-    
-    
-    
 
 def pull_expt_data(expt, species_list):
     df = pd.read_csv("data/raw_data/" + str(expt) + ".csv")
