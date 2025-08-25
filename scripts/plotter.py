@@ -43,11 +43,35 @@ def plot_model_fit(run_params, species):
     
     
     fig, axes = best_subplots(len(run_params["experiments"]))
-    plt.show()
-    for expt in run_params["experiments"]:
-        df = pd.read_csv(f"../../data/raw_data/{expt}.csv")
-        
     
+    colors = plt.cm.tab10.colors
+    ymins, ymaxs = [], []
+
+    for expt, ax, color in zip(run_params["experiments"], axes, colors):
+        df = pd.read_csv(f"../../data/raw_data/{expt}.csv")
+        avg = df[df["ID"].str.contains("Average")][species].iloc[0]
+        
+        avg = float(str(avg).replace("_","-"))
+
+        ax.plot([0, 31], [avg, avg], linestyle='--', marker='',
+                color=color)
+        
+        data = df[df["ID"].str.contains("Average|Blank") == False][species].astype(float)
+        
+        ax.plot(range(len(data)), data, marker='o', mfc=color, mew=0,
+                linestyle='')
+        ax.set_title(expt)
+        
+        ymins.append(min(avg, data.min()))
+        ymaxs.append(max(avg, data.max()))
+
+    for ax in axes:
+        ax.set_ylim(min(ymins)*0.9, max(ymaxs)*1.1)
+        
+        if max(ymaxs)/min(ymins) > 10:
+            ax.set_yscale("log")
+        
+    fig.savefig(f"figures/{species}_plot.png")
 
 def best_subplots(n, figsize_scale=3):
     """
