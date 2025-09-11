@@ -21,7 +21,7 @@ output_file = input_file  # overwrite same file; change if you want a new one
 df = pd.read_csv(input_file, dtype=str)
 
 # Replace all "-" with "_"
-df = df.applymap(lambda x: x.replace("-", "_") if isinstance(x, str) else x)
+df["ID"] = df["ID"].apply(lambda x: x.replace("-", "_") if isinstance(x, str) else x)
 
 # Save back to CSV
 df.to_csv(output_file, index=False)

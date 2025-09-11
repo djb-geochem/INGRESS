@@ -8,6 +8,7 @@ Created on Fri Aug 15 22:56:56 2025
 import subprocess
 import sys
 import yaml
+import os
 
 
 
@@ -65,5 +66,9 @@ if __name__ == "__main__":
     expt_list = sys.argv[1:]
     
     for expt in expt_list:
+        cmd = ["cp", "../../hanford.dat", expt]
+        subprocess.run(cmd)
+        os.chdir(expt)
         run_pflotran(expt)
         process_results(cfg, expt)
+        os.chdir("..")

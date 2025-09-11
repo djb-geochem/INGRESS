@@ -1,0 +1,20 @@
+--- 05/09/25 ---
+
+Trying to fit interstitial calcite dissolution obsered in SAE1. Pest++ wants SA_VF power to be ~15. I don't think this is reasonable.
+
+Looks like value for Calc_is_SA_VF can't be set below 1 or it shits the bed. However it's happy to fit any value 1 or above reasonably well. Unclear exactly why this would be from reading the pflotran documentation. A/A0 = (phi/phi0)^n, where n=2/3 would be a sphere. But we apparently need A to decrease faster than that?
+
+calc_is_SA_VF (fixed)	calc_is_sa	calc_is_vf
+1	0.0400807	0.000548512
+2	0.0636064	0.000711128
+5	0.105053	0.00122044
+
+All of these combinations do a decent job at reproducing the data. SA_VF = 1 is basically a straight line in Ca and pH outputs, and higher numbers show more of an exponential decay, which is probably a better fit to the data.
+
+Running fits to all 4 experiments currently hangs while running SAE2 for some reason. pflotran fails for sae2 earlier in the run too.
+
+--- 11/09/25 ---
+
+Maybe I can try to hone in on the calcite surface parameters by fitting those and Ca++ and pH first, before trying SiO2?
+
+

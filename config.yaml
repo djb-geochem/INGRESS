@@ -13,7 +13,7 @@ expt_conditions:
     pres:        75     #bar
     CO2:         10     #ppm
     rock_mass:   24.29  #g
-    calcite:     1.5e-4 #wt%
+    calcite:     0.0    #wt%
     porosity:    43.01  #%
     flow_rate:   5      #ml/hr
     duration:    31     #days

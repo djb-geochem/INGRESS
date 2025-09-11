@@ -30,7 +30,7 @@ def write_pest_control(cfg, run_params, obsdata):
     
     rendered_text = template.render(context)
     
-    output_dir = Path(run_params["rundir"])
+    output_dir = run_params["run_dir"]
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / "pest_control.pst"
     
@@ -56,7 +56,7 @@ def write_pflotran_in(cfg, run_params, expt):
     rendered_text = template.render(context)
     
     output_filename = str(expt) + ".in.tpl"
-    output_dir = Path(run_params["rundir"])
+    output_dir = run_params["run_dir"] / f"{expt}"
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / output_filename
     
@@ -65,7 +65,7 @@ def write_pflotran_in(cfg, run_params, expt):
     
 def write_instructions(cfg, run_params, expt, obsdata):
     
-    ins_filename = f"{run_params['rundir']}/instr_{expt}.ins"
+    ins_filename = run_params['run_dir'] / f"{expt}/instr_{expt}.ins"
     with open(ins_filename, 'w') as f:
         f.write("pif *\n")
         for species in run_params["fitted_species"]:

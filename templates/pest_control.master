@@ -34,9 +34,9 @@ python ../../utils/run_pflotran.py {% for expt in experiments -%} {{ expt }} {% 
 
 * model input/output
 {% for expt in experiments -%}
-{{ expt }}.in.tpl {{ expt }}.in
+{{ expt }}/{{ expt }}.in.tpl {{ expt }}/{{ expt }}.in
 {% endfor %}
 {% for expt in experiments -%}
-instr_{{ expt }}.ins results_{{ expt }}.txt
+{{ expt }}/instr_{{ expt }}.ins {{ expt }}/results_{{ expt }}.txt
 {% endfor %}
 * prior information

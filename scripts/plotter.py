@@ -41,30 +41,33 @@ def plot_correlation_matrix():
 
 def plot_model_fit(run_params, species):
     
-    
+    flag = run_params["fitted_species"][species]["flag"]
     fig, axes = best_subplots(len(run_params["experiments"]))
     
     colors = plt.cm.tab10.colors
     ymins, ymaxs = [], []
 
     for expt, ax, color in zip(run_params["experiments"], axes, colors):
-        df = pd.read_csv(f"../../data/raw_data/{expt}.csv")
-        avg = df[df["ID"].str.contains("Average")][species].iloc[0]
-        
-        avg = float(str(avg).replace("_","-"))
 
-        ax.plot([0, 31], [avg, avg], linestyle='--', marker='',
+        avg, data = pull_expt_data(expt, species)
+        
+        ax.plot([0, 31], [avg, avg], linestyle='-', marker='',
                 color=color)
-        
-        data = df[df["ID"].str.contains("Average|Blank") == False][species].astype(float)
-        
-        ax.plot(range(len(data)), data, marker='o', mfc=color, mew=0,
+      
+        ax.plot(range(len(data)), data,
+                marker='o', mfc=color, mew=0.5, mec='w',
                 linestyle='')
+        
+        model = pull_model_data(expt, flag)
+        
+        ax.plot(range(len(model)), model,
+                marker='', linestyle='--', color=color)
+        
         ax.set_title(expt)
         
         ymins.append(min(avg, data.min()))
         ymaxs.append(max(avg, data.max()))
-
+        
     for ax in axes:
         ax.set_ylim(min(ymins)*0.9, max(ymaxs)*1.1)
         
@@ -72,6 +75,51 @@ def plot_model_fit(run_params, species):
             ax.set_yscale("log")
         
     fig.savefig(f"figures/{species}_plot.png")
+    plt.show()
+
+def pull_expt_data(expt, species):
+    df = pd.read_csv(f"../../data/raw_data/{expt}.csv")
+    avg = df[df["ID"].str.contains("Average")][species].iloc[0]
+    data = df[df["ID"].str.contains("Average|Blank") == False][species].astype(float)
+    
+    return avg, data
+
+def pull_model_data(expt, flag):
+    
+    with open(f"{expt}/results_{expt}.txt") as file:
+        lines = file.readlines()
+    
+    for i,line in enumerate(lines):
+        if line.startswith(flag):
+            idx = i+1
+    
+    model_data = []
+    for line in lines[idx:]:
+        if line.lstrip()[0].isalpha():
+            break
+        else:
+            model_data.append(float(line))
+    
+    return model_data
+    
+    
+    
+def read_model_parameters():
+    
+    with open("pest_control.rec") as model_file:
+        lines = model_file.readlines()
+        
+    for i, line in enumerate(lines):
+        if line.startswith("Parameter information"):
+            parameter_line = i+2
+    
+    for line in lines[parameter_line:]:
+        if not line.strip():
+            break
+        par_name = line.split()[0]
+        
+    if lines[parameter_line].strip():
+        None
 
 def best_subplots(n, figsize_scale=3):
     """
@@ -93,10 +141,17 @@ def best_subplots(n, figsize_scale=3):
 
     fig, axes = plt.subplots(nrows, ncols,
                              figsize=(figsize_scale*ncols, figsize_scale*nrows))
-    axes = axes.flatten()
-
+    
+    if n == 1:
+        axes = [axes]
+    else:
+        axes = axes.flatten()
     # Remove extra axes
     for ax in axes[n:]:
         fig.delaxes(ax)
 
     return fig, axes[:n]
+
+if __name__ == "__main__":
+    
+    plot_figures()

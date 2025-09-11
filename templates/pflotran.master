@@ -47,9 +47,8 @@ END
 CHEMISTRY
   #LOG_FORMULATION
   TRUNCATE_CONCENTRATION 1e-30
-  UPDATE_POROSITY
+  #UPDATE_POROSITY
   #UPDATE_PERMEABILITY
-  UPDATE_MINERAL_SURFACE_AREA
   PRIMARY_SPECIES
     H+
     SiO2(aq)
@@ -91,30 +90,48 @@ CHEMISTRY
   /
   MINERALS
     Calcite
-    Calcite_slow1
+    Calcite_is
     SiO2(am)
 
  
   /
   MINERAL_KINETICS
     Calcite
-      #RATE_CONSTANT 1e-6 mol/m^2-sec # 1e-6 https://pubs.acs.org/doi/pdf/10.1021/acsmeasuresciau.2c00025
+      SURFACE_AREA_FUNCTION VOLUME_FRACTION_RATIO
+      SURFACE_AREA_VOL_FRAC_POWER {{ " ~ Calc_SA_VF ~ " if tuned_parameters["Calc_SA_VF"].active else tuned_parameters["Calc_SA_VF"].default }}
       PREFACTOR
-        RATE_CONSTANT -0.30 mol/m^2-sec     # <- vary this by 1
+        RATE_CONSTANT -0.30 mol/m^2-sec
         ACTIVATION_ENERGY 14.4
         PREFACTOR_SPECIES H+
           ALPHA {{ " ~ Calc_alpha ~ " if tuned_parameters["Calc_alpha"].active else tuned_parameters["Calc_alpha"].default }}
         /
       /
       PREFACTOR
+        RATE_CONSTANT -5.81 mol/m^2-sec     
+        ACTIVATION_ENERGY 23.5
+      /
+      
+    /
+    Calcite_is
+      SURFACE_AREA_FUNCTION VOLUME_FRACTION_RATIO
+      SURFACE_AREA_VOL_FRAC_POWER {{ " ~ Calc_is_SA_VF ~ " if tuned_parameters["Calc_is_SA_VF"].active else tuned_parameters["Calc_is_SA_VF"].default }}
+      PREFACTOR
+        RATE_CONSTANT -0.30 mol/m^2-sec     
+        ACTIVATION_ENERGY 14.4
+        PREFACTOR_SPECIES H+
+          ALPHA {{ " ~ Calc_is_alpha ~ " if tuned_parameters["Calc_is_alpha"].active else tuned_parameters["Calc_is_alpha"].default }}
+        /
+      /
+      PREFACTOR
         RATE_CONSTANT -5.81 mol/m^2-sec     # <- vary this by 1
         ACTIVATION_ENERGY 23.5
       /
-      SURFACE_AREA_VOL_FRAC_POWER {{ " ~ Calc_SA_VF ~ " if tuned_parameters["Calc_SA_VF"].active else tuned_parameters["Calc_SA_VF"].default }}
+      
     /
 
 
     SiO2(am)
+      SURFACE_AREA_FUNCTION VOLUME_FRACTION_RATIO
       SURFACE_AREA_VOL_FRAC_POWER {{ " ~ SiO2_SA_VF ~ " if tuned_parameters["SiO2_SA_VF"].active else tuned_parameters["SiO2_SA_VF"].default }}
       #RATE_CONSTANT 1e-8 mol/m^2-sec # 1e-7 https://www.tandfonline.com/doi/pdf/10.1080/18811248.2000.9714905
       PREFACTOR
@@ -170,6 +187,7 @@ MATERIAL_PROPERTY soil1
   PERMEABILITY_CRITICAL_POROSITY 0.001
   PERMEABILITY_POWER 2.5
   PERMEABILITY_MIN_SCALE_FACTOR 1e-12
+  ROCK_DENSITY 3e3
 END
  
 #=========================== characteristic curves ============================
@@ -331,15 +349,16 @@ CONSTRAINT initial_constraint
   /
   MINERALS
  
-    Calcite         {{ expt_calc }}   {{ " ~ Calc_SA ~ " if tuned_parameters["Calc_SA"].active else tuned_parameters["Calc_SA"].default }} m^2/m^3
-    SiO2(am)        {{ " ~ SiO2_VF ~ " if tuned_parameters["SiO2_VF"].active else tuned_parameters["SiO2_VF"].default }}  {{ " ~ SiO2_SA ~ " if tuned_parameters["SiO2_SA"].active else tuned_parameters["SiO2_SA"].default }} m^2/m^3
+    Calcite         {{ expt_calc }}   {{ " ~ Calc_SA ~ " if tuned_parameters["Calc_SA"].active else tuned_parameters["Calc_SA"].default }} cm^2/cm^3
+    Calcite_is      {{ " ~ Calc_is_VF ~ " if tuned_parameters["Calc_is_VF"].active else tuned_parameters["Calc_is_VF"].default }}  {{ " ~ Calc_is_SA ~ " if tuned_parameters["Calc_is_SA"].active else tuned_parameters["Calc_is_SA"].default }} cm^2/cm^3
+    SiO2(am)        {{ " ~ SiO2_VF ~ " if tuned_parameters["SiO2_VF"].active else tuned_parameters["SiO2_VF"].default }}  {{ " ~ SiO2_SA ~ " if tuned_parameters["SiO2_SA"].active else tuned_parameters["SiO2_SA"].default }} cm^2/cm^3
 
  
   /
 END
  
 CONSTRAINT inlet_constraint_1
-  CONCENTRATIONS
+  CONCENTRATIONS 
     H+              4.72          P
  
     Cl-          0.026398         Z
