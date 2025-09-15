@@ -20,7 +20,7 @@ from scripts.input_reader import preprocess
 from scripts.template_writer import write_templates
 from utils import load_yaml, run_pestpp
 from scripts.plotter import plot_figures
-# from scripts.cleanup import cleanup
+from scripts.postprocessing import postprocess
 
 def initialize():
 
@@ -40,6 +40,9 @@ def main():
     os.chdir(run_params["run_dir"])
     run_pestpp()
     plot_figures(run_params)
+    postprocess()
+    
+    
     
 if __name__ == "__main__":
     main()

@@ -21,11 +21,11 @@ tuned_parameters:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
     parval:    -1           # starting value
-    parlbnd:   -1.2         # lower bound
+    parlbnd:   -5           # lower bound
     parubnd:   -0.1         # upper bound
     pargp:     alpha        # parameter group
     active:    False        # whether parameter is active in model
-    default:   -1           # default value when parameter is inactive
+    default:   -0.351987    # default value when parameter is inactive
   SiO2_SA:
     partrans:  log          # transformation
     parchglim: factor       # change limiter
@@ -33,16 +33,16 @@ tuned_parameters:
     parlbnd:   1e0          # lower bound
     parubnd:   1e7          # upper bound
     pargp:     SA           # parameter group
-    active:    True         # whether parameter is active in model
-    default:   1e4          # default value when parameter is inactive
+    active:    False        # whether parameter is active in model
+    default:   52534.3      # default value when parameter is inactive
   SiO2_SA_VF:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
-    parval:    0.5          # starting value
-    parlbnd:   0           # lower bound
-    parubnd:   1            # upper bound
+    parval:    0.66         # starting value
+    parlbnd:   0.01         # lower bound
+    parubnd:   5            # upper bound
     pargp:     SA_VF        # parameter group
-    active:    False        # whether parameter is active in model
+    active:    True         # whether parameter is active in model
     default:   0.041        # default value when parameter is inactive
   SiO2_VF:
     partrans:  log          # transformation
@@ -56,12 +56,12 @@ tuned_parameters:
   Calc_alpha:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
-    parval:     2           # starting value
-    parlbnd:   0.5          # lower bound
+    parval:    1            # starting value
+    parlbnd:   0.1          # lower bound
     parubnd:   10           # upper bound
     pargp:     alpha        # parameter group
-    active:    True         # whether parameter is active in model
-    default:   1            # default value when parameter is inactive
+    active:    False        # whether parameter is active in model
+    default:   1.8387       # default value when parameter is inactive
   Calc_SA:
     partrans:  log          # transformation
     parchglim: factor       # change limiter
@@ -69,8 +69,8 @@ tuned_parameters:
     parlbnd:   1e-2         # lower bound
     parubnd:   1e3          # upper bound
     pargp:     SA           # parameter group
-    active:    True         # whether parameter is active in model
-    default:   50           # default value when parameter is inactive
+    active:    False        # whether parameter is active in model
+    default:   2.71572      # default value when parameter is inactive
   Calc_SA_VF:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -78,8 +78,8 @@ tuned_parameters:
     parlbnd:   -5           # lower bound
     parubnd:   20           # upper bound
     pargp:     SA_VF        # parameter group
-    active:    True         # whether parameter is active in model
-    default:   0.66         # default value when parameter is inactive
+    active:    False        # whether parameter is active in model
+    default:   3.57794      # default value when parameter is inactive
   Calc_is_alpha:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -125,18 +125,18 @@ experiments:
   - sae4
 
 fitted_species:
-  pH:
-    sigma:    0.2            # estimated uncertainty (used for weighting)
-    n_drop:   3              # n dropped at start
-    flag:     pH             # flag in output files
+#  pH:
+#    sigma:    0.2            # estimated uncertainty (used for weighting)
+#    n_drop:   3              # n dropped at start
+#    flag:     pH             # flag in output files
   SiO2:
     sigma:    1e-4           # estimated uncertainty (used for weighting)
     n_drop:   3              # n dropped at start
     flag:     Total_SiO2(aq) # flag in output files
-  Ca:
-    sigma:    1e-4           # estimated uncertainty (used for weighting)
-    n_drop:   3              # n dropped at start
-    flag:     Total_Ca++     # flag in output files
+#  Ca:
+#    sigma:    1e-4           # estimated uncertainty (used for weighting)
+#    n_drop:   3              # n dropped at start
+#    flag:     Total_Ca++     # flag in output files
     
 drop_obs: none
 

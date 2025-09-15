@@ -18,3 +18,24 @@ Running fits to all 4 experiments currently hangs while running SAE2 for some re
 Maybe I can try to hone in on the calcite surface parameters by fitting those and Ca++ and pH first, before trying SiO2?
 
 
+--- 12/09/25 ---
+
+Fit some Calc parameters:
+
+  Calc_alpha:          1.8387       # default value when parameter is inactive
+  Calc_SA:             2.71572      # default value when parameter is inactive
+  Calc_SA_VF:          3.57794      # default value when parameter is inactive
+  Calc_is_alpha:       1            # default value when parameter is inactive
+  Calc_is_SA:          0.0857075    # default value when parameter is inactive
+  Calc_is_SA_VF:       2            # default value when parameter is inactive
+  Calc_is_VF:          0.000744927  # default value when parameter is inactive
+  
+Now trying to fit SiO2 parameters independently (fitting only to SiO2 abundances)
+
+Some apparent strange behaviour in pestpp where certain parameters aren't adjusted at all from their initial values?
+
+--- 15/09/25 ---
+
+Current confusion is how the different derinc types and transformations affect parameters such as SA_VF which can be around or close to zero.
+
+"absolute" vs "relative" increment type for parameter groups, and how that interacts with parameter transformation and change limiters...
