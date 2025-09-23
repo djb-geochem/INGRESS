@@ -22,13 +22,13 @@ Maybe I can try to hone in on the calcite surface parameters by fitting those an
 
 Fit some Calc parameters:
 
-  Calc_alpha:          1.8387       # default value when parameter is inactive
-  Calc_SA:             2.71572      # default value when parameter is inactive
-  Calc_SA_VF:          3.57794      # default value when parameter is inactive
-  Calc_is_alpha:       1            # default value when parameter is inactive
-  Calc_is_SA:          0.0857075    # default value when parameter is inactive
-  Calc_is_SA_VF:       2            # default value when parameter is inactive
-  Calc_is_VF:          0.000744927  # default value when parameter is inactive
+  Calc_alpha:          1.8387       
+  Calc_SA:             2.71572      
+  Calc_SA_VF:          3.57794      
+  Calc_is_alpha:       1            
+  Calc_is_SA:          0.0857075    
+  Calc_is_SA_VF:       2            
+  Calc_is_VF:          0.000744927  
   
 Now trying to fit SiO2 parameters independently (fitting only to SiO2 abundances)
 
@@ -39,3 +39,45 @@ Some apparent strange behaviour in pestpp where certain parameters aren't adjust
 Current confusion is how the different derinc types and transformations affect parameters such as SA_VF which can be around or close to zero.
 
 "absolute" vs "relative" increment type for parameter groups, and how that interacts with parameter transformation and change limiters...
+
+--- 16/09/25 ---
+
+I have a setup that seems to reproduce the experiments to what I would consider an acceptable degree.
+
+Major change has been to alter SiO2 mineral surface area function to "constant" rather than "volume fraction power". There were too many issues with SiO2_SA_VF crashing pflotran, quite likely because the initially low SiO2_VF (currently using 1e-4) means that relative VF changes really quickly. Here are the floating parameters and their current values:
+
+
+  Calc_alpha:          1.8387       
+  Calc_SA:             2.71572      
+  Calc_SA_VF:          3.57794      
+  Calc_is_alpha:       1            
+  Calc_is_SA:          0.0857075    
+  Calc_is_SA_VF:       2            
+  Calc_is_VF:          0.000744927
+  SiO2_alpha:          -0.351987
+  SiO2_SA:             52534.3
+
+If I set SiO2_VF to active it doesn't really seem to want to change it anyway.
+
+A full inversion of pH, Ca and SiO2 data gives the following:
+
+                name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+          sio2_alpha            -1.00000             1.22500            -3.45000             1.45000           -0.351776           0.0103589           -0.372494           -0.331059
+             sio2_sa             4.00000             1.75000            0.500000             7.50000             4.72114           0.0702856             4.58057             4.86171
+          calc_alpha             1.00000             2.47500            -3.95000             5.95000             1.87138             2.47349            -3.07559             6.81835
+             calc_sa             1.47712             1.25000            -1.02288             3.97712            0.434582           0.0413625            0.351857            0.517307
+          calc_sa_vf             3.60000             6.25000            -8.90000             16.1000             3.50107            0.187811             3.12545             3.87670
+the above parameter uncertainty summary was written to file 'pest_control.par.usum.csv'
+
+Suggesting calc_alpha is not tightly constrained, we should probably leave it at one.
+
+--- 24/09/25 ---
+
+Have been playing around in the sandbox folder, trying out a 3D implementation of the model using PFLOTRAN's cyclindrical co-ordinate support. It seems to be working ok. Takes about 15 seconds to run a model vs ~1 second for the 1D model. 
+
+Will require rewriting of the template writing scripts to adjust the instructions files I believe, but should be fine after that?
+
+
+  
+  
+  
