@@ -57,7 +57,7 @@ Major change has been to alter SiO2 mineral surface area function to "constant" 
   SiO2_alpha:          -0.351987
   SiO2_SA:             52534.3
 
-If I set SiO2_VF to active it doesn't really seem to want to change it anyway.
+If I set SiO2_VF to active it doesn't really seem to want to change it anyway. - because SA doesn't change with VF?
 
 A full inversion of pH, Ca and SiO2 data gives the following:
 
@@ -77,7 +77,18 @@ Have been playing around in the sandbox folder, trying out a 3D implementation o
 
 Will require rewriting of the template writing scripts to adjust the instructions files I believe, but should be fine after that?
 
+Had to edit config file to change which lines are being processed into "results.txt" for each PFLOTRAN run, and made instructions writer pull first number from each line.
 
-  
+Changed "pflotran.master" to the 3D version and saved old version as "pflotran_1D.master"
+ 
+First run seemed to work - tuning a single parameter on SAE1 took 20 minutes though
+
+SAE1 tuning for Calc_is parameters seems to have similar behaviour to 1D. Calc_is_SA_VF wants to go to silly levels, I'm gonna fix it at 2. 
+
+40 minutes to tune 3 parameters on SAE1, suggests I may have to look into parallelisation...
+
+Added a script in utils "batch_run_pflotran.py" that calls up to 4x run_pflotran.py in parallel. Hopefully will speed things up.
+
+
   
   

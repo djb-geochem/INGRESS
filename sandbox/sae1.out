@@ -2055,7 +2055,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-006.vtk
  --> write vtk velocity output file: sae1-vel-006.vtk
-      0.01 Seconds to write to VTK file(s)
+      0.02 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 5.99E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -2205,7 +2205,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-009.vtk
  --> write vtk velocity output file: sae1-vel-009.vtk
-      0.01 Seconds to write to VTK file(s)
+      0.04 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 5.96E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -2355,7 +2355,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-012.vtk
  --> write vtk velocity output file: sae1-vel-012.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 5.99E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -2455,7 +2455,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-014.vtk
  --> write vtk velocity output file: sae1-vel-014.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.06E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -2555,7 +2555,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-016.vtk
  --> write vtk velocity output file: sae1-vel-016.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.06E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -2605,7 +2605,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-017.vtk
  --> write vtk velocity output file: sae1-vel-017.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.58E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -2655,7 +2655,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-018.vtk
  --> write vtk velocity output file: sae1-vel-018.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.22E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -2805,7 +2805,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-021.vtk
  --> write vtk velocity output file: sae1-vel-021.vtk
-      0.01 Seconds to write to VTK file(s)
+      0.02 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 5.99E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -3205,7 +3205,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-029.vtk
  --> write vtk velocity output file: sae1-vel-029.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.78E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.36E-08 iu: 0.00E+00 rsn:   0
@@ -3355,7 +3355,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-032.vtk
  --> write vtk velocity output file: sae1-vel-032.vtk
-      0.01 Seconds to write to VTK file(s)
+      0.04 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.11E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -3805,7 +3805,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-041.vtk
  --> write vtk velocity output file: sae1-vel-041.vtk
-      0.01 Seconds to write to VTK file(s)
+      0.02 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.16E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -4005,7 +4005,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-045.vtk
  --> write vtk velocity output file: sae1-vel-045.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 5.99E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -4105,7 +4105,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-047.vtk
  --> write vtk velocity output file: sae1-vel-047.vtk
-      0.01 Seconds to write to VTK file(s)
+      0.02 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.11E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -4405,7 +4405,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-053.vtk
  --> write vtk velocity output file: sae1-vel-053.vtk
-      0.01 Seconds to write to VTK file(s)
+      0.02 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 5.98E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -4455,7 +4455,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-054.vtk
  --> write vtk velocity output file: sae1-vel-054.vtk
-      0.01 Seconds to write to VTK file(s)
+      0.02 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.13E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -4805,7 +4805,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-061.vtk
  --> write vtk velocity output file: sae1-vel-061.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.58E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -4855,7 +4855,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-062.vtk
  --> write vtk velocity output file: sae1-vel-062.vtk
-      0.03 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.18E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -4955,7 +4955,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-064.vtk
  --> write vtk velocity output file: sae1-vel-064.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.70E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.37E-08 iu: 0.00E+00 rsn:   0
@@ -5155,7 +5155,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-068.vtk
  --> write vtk velocity output file: sae1-vel-068.vtk
-      0.01 Seconds to write to VTK file(s)
+      0.02 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.13E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -5555,7 +5555,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-076.vtk
  --> write vtk velocity output file: sae1-vel-076.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.32E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -5855,7 +5855,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-082.vtk
  --> write vtk velocity output file: sae1-vel-082.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.12E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -6105,7 +6105,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-087.vtk
  --> write vtk velocity output file: sae1-vel-087.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 5.96E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -6205,7 +6205,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-089.vtk
  --> write vtk velocity output file: sae1-vel-089.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 5.96E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -6305,7 +6305,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-091.vtk
  --> write vtk velocity output file: sae1-vel-091.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.13E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -6455,7 +6455,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-094.vtk
  --> write vtk velocity output file: sae1-vel-094.vtk
-      0.01 Seconds to write to VTK file(s)
+      0.02 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 5.96E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -6555,7 +6555,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-096.vtk
  --> write vtk velocity output file: sae1-vel-096.vtk
-      0.01 Seconds to write to VTK file(s)
+      0.02 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.50E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -6705,7 +6705,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-099.vtk
  --> write vtk velocity output file: sae1-vel-099.vtk
-      0.01 Seconds to write to VTK file(s)
+      0.02 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.02E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -6805,7 +6805,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-101.vtk
  --> write vtk velocity output file: sae1-vel-101.vtk
-      0.03 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.08E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -6855,7 +6855,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-102.vtk
  --> write vtk velocity output file: sae1-vel-102.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.13E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -7242,7 +7242,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-110.vtk
  --> write vtk velocity output file: sae1-vel-110.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.11E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -7770,7 +7770,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-121.vtk
  --> write vtk velocity output file: sae1-vel-121.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 6.22E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -7818,7 +7818,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-122.vtk
  --> write vtk velocity output file: sae1-vel-122.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 5.78E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -7866,7 +7866,7 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-123.vtk
  --> write vtk velocity output file: sae1-vel-123.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 == TH FLOW =====================================================================
   0 2r: 5.96E-08 2x: 0.00E+00 2u: 0.00E+00 ir: 1.28E-08 iu: 0.00E+00 rsn:   0
@@ -8106,22 +8106,22 @@ Newton solver reason: SNES_DIVERGED_FNORM_NAN
 
  --> write vtk output file: sae1-128.vtk
  --> write vtk velocity output file: sae1-vel-128.vtk
-      0.02 Seconds to write to VTK file(s)
+      0.01 Seconds to write to VTK file(s)
 
 PMCSubsurfaceFlow
- Total Time: 5.7145E-01 seconds
+ Total Time: 4.9146E-01 seconds
 
  FLOW TS SNES steps = 271  newton = 274  linear = 274  cuts = 0
  FLOW TS SNES Wasted Linear Iterations = 0
  FLOW TS SNES Wasted Newton Iterations = 0
- FLOW TS SNES time = 0.4 seconds
+ FLOW TS SNES time = 0.3 seconds
 
 PMCSubsurfaceTransport
- Total Time: 1.2078E+01 seconds
+ Total Time: 1.0350E+01 seconds
 
  TRAN TS SNES steps = 286  newton = 834  linear = 836  cuts = 2
  TRAN TS SNES Wasted Linear Iterations = 4
  TRAN TS SNES Wasted Newton Iterations = 2
- TRAN TS SNES time = 11.7 seconds
+ TRAN TS SNES time = 10.0 seconds
 
- Wall Clock Time:  1.4209E+01 [sec]   2.3682E-01 [min]   3.9470E-03 [hr]
+ Wall Clock Time:  1.2226E+01 [sec]   2.0377E-01 [min]   3.3962E-03 [hr]

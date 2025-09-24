@@ -35,13 +35,14 @@ END
  
 #=========================== discretization ===================================
 GRID
-  TYPE STRUCTURED CYLINDRICAL
-  NXYZ 10 1 20
+  TYPE STRUCTURED
+  NXYZ 20 1 1
   BOUNDS
-    0.d0 0.
-    0.00635 0.1516d0 # 0.01125 0.01125 # equivalent square area for r=6.35mm
+    0.d0 0.d0 0.d0
+    0.1516d0 0.01125 0.01125 # equivalent square area for r=6.35mm
   /
 END
+ 
 #=========================== chemistry ========================================
 CHEMISTRY
   #LOG_FORMULATION
@@ -145,7 +146,7 @@ CHEMISTRY
  
  
   /
-  DATABASE ../../../hanford.dat
+  DATABASE hanford.dat
   #LOG_FORMULATION
   MOLAL
 #  OPERATOR_SPLITTING
@@ -232,23 +233,46 @@ END
 REGION all
   COORDINATES
     0.d0 0.d0 0.d0
-    0.00635d0 1.d0 0.1516d0 # 0.01125 0.01125
-  /
-END
-
-REGION bottom
-  FACE bottom
-  COORDINATES
-    0.d0 0.d0 0.d0
-    0.002d0 1.d0 0.d0 # 0.01125 0.01125
+    0.1516d0 0.01125 0.01125
   /
 END
  
-REGION top
-  FACE top
+REGION left_half
   COORDINATES
-    0.d0 0.d0 0.1516d0 # 0.d0 0.d0
-    0.002d0 1.d0 0.1516d0 # 0.01125 0.01125
+    0.d0 0.d0 0.d0
+    0.7508d0 0.01125 0.01125
+  /
+END
+ 
+REGION west
+  FACE WEST
+  COORDINATES
+    0.d0 0.d0 0.d0
+    0.d0 0.01125 0.01125
+  /
+END
+ 
+REGION east
+  FACE EAST
+  COORDINATES
+    0.1516d0 0.d0 0.d0
+    0.1516d0 0.01125 0.01125
+  /
+END
+ 
+REGION north
+  FACE NORTH
+  COORDINATES
+    0.d0 0.01125 0.d0
+    0.1516d0 0.01125 0.01125
+  /
+END
+ 
+REGION south
+  FACE SOUTH
+  COORDINATES
+    0.d0 0.d0 0.d0
+    0.1516d0 0.d0 0.01125
   /
 END
  
@@ -282,10 +306,11 @@ FLOW_CONDITION inlet_flux
     TIME_UNITS d
     DATA_UNITS m/y
       0.d0 0.d0
-      0.001d0 3487.884 m/y # 5 ml/hour = 3487.884 m/y with r=2mm
+      0.001d0 3.4576e2 m/y # 5 ml/hour = 3.4576e1 m/y with r=6.35mm and l=15.16mm (0.00001097393 m/s at A = 0.01125^2)
     END
   TEMPERATURE 150.
 END
+ 
 #=========================== transport conditions =============================
 TRANSPORT_CONDITION background_conc
   TYPE ZERO_GRADIENT
@@ -364,14 +389,14 @@ END
 BOUNDARY_CONDITION outlet
   FLOW_CONDITION initial_pressure
   TRANSPORT_CONDITION background_conc
-  REGION top
+  REGION east
 END
  
 BOUNDARY_CONDITION inlet
   FLOW_CONDITION inlet_flux
   #FLOW_CONDITION inlet_pressure
   TRANSPORT_CONDITION inlet_conc
-  REGION bottom
+  REGION west
 END
 #=========================== stratigraphy couplers ============================
 STRATA

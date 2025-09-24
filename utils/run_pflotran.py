@@ -47,7 +47,7 @@ def process_results(cfg, expt):
         with open(vtkname) as vtkfile:
             lines = vtkfile.readlines()
             for flag in flags:
-                result = lines[flag["line"]].split()[-1]
+                result = lines[flag["line"]].split()[0]
                 processed_results[flag["name"]].append(result)
     
     resultsfile = f"results_{expt}.txt"
@@ -66,8 +66,8 @@ if __name__ == "__main__":
     expt_list = sys.argv[1:]
     
     for expt in expt_list:
-        cmd = ["cp", "../../hanford.dat", expt]
-        subprocess.run(cmd)
+        # cmd = ["cp", "../../hanford.dat", expt]
+        # subprocess.run(cmd)
         os.chdir(expt)
         run_pflotran(expt)
         process_results(cfg, expt)

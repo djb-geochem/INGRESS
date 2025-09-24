@@ -25,7 +25,7 @@ tuned_parameters:
     parubnd:   -0.1         # upper bound
     pargp:     alpha        # parameter group
     active:    True         # whether parameter is active in model
-    default:   -0.351987    # default value when parameter is inactive
+    default:   -0.363406    # default value when parameter is inactive
   SiO2_SA:
     partrans:  log          # transformation
     parchglim: factor       # change limiter
@@ -34,7 +34,7 @@ tuned_parameters:
     parubnd:   1e7          # upper bound
     pargp:     SA           # parameter group
     active:    True         # whether parameter is active in model
-    default:   52534.3      # default value when parameter is inactive
+    default:   74843.9      # default value when parameter is inactive
   SiO2_SA_VF:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -70,7 +70,7 @@ tuned_parameters:
     parubnd:   1e3          # upper bound
     pargp:     SA           # parameter group
     active:    True         # whether parameter is active in model
-    default:   2.71572      # default value when parameter is inactive
+    default:   1.54868      # default value when parameter is inactive
   Calc_SA_VF:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -78,8 +78,8 @@ tuned_parameters:
     parlbnd:   -5           # lower bound
     parubnd:   20           # upper bound
     pargp:     SA_VF        # parameter group
-    active:    False        # whether parameter is active in model
-    default:   3.57794      # default value when parameter is inactive
+    active:    True         # whether parameter is active in model
+    default:   1.75291      # default value when parameter is inactive
   Calc_is_alpha:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -97,7 +97,7 @@ tuned_parameters:
     parubnd:   1e6          # upper bound
     pargp:     SA           # parameter group
     active:    False        # whether parameter is active in model
-    default:   0.0857075    # default value when parameter is inactive
+    default:   0.14996      # default value when parameter is inactive
   Calc_is_SA_VF:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -105,7 +105,7 @@ tuned_parameters:
     parlbnd:   -5           # lower bound
     parubnd:   20           # upper bound
     pargp:     SA_VF        # parameter group
-    active:    False         # whether parameter is active in model
+    active:    False        # whether parameter is active in model
     default:   2            # default value when parameter is inactive
   Calc_is_VF:
     partrans:  none         # transformation
@@ -115,7 +115,7 @@ tuned_parameters:
     parubnd:   1e-2         # upper bound
     pargp:     VF           # parameter group
     active:    False        # whether parameter is active in model
-    default:   0.000744927  # default value when parameter is inactive
+    default:   0.00127399   # default value when parameter is inactive
 
 
 experiments:

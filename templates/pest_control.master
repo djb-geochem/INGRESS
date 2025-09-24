@@ -30,7 +30,7 @@ restart estimation
 {% endfor %}
 
 * model command line
-python ../../utils/run_pflotran.py {% for expt in experiments -%} {{ expt }} {% endfor %}
+python ../../utils/batch_run_pflotran.py {% for expt in experiments -%} {{ expt }} {% endfor %}
 
 * model input/output
 {% for expt in experiments -%}

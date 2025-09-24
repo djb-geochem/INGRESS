@@ -50,10 +50,10 @@ expt_conditions:
     
 output_flags:
   - name: pH
-    line: 161
+    line: 989
   - name: Total_SiO2(aq)
-    line: 173
+    line: 1037
   - name: Total_Ca++
-    line: 185
+    line: 1085
   
   
