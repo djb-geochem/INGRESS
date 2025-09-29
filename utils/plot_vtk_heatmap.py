@@ -26,36 +26,49 @@ def read_vtk_scalar(filename, scalar_name, shape=(10,20)):
     return np.array(data).reshape(shape)
 
 
-def animate_vtk_series(scalar_name, nfiles=129, shape=(20,10), outfile="animation.mp4"):
+def animate_vtk_series(expt_list, scalar_name, nfiles=129, shape=(20,10)):
     """
     Loads scalar arrays from multiple vtk files and animates them.
     Saves to MP4 using ffmpeg.
     """
+    
+    outfile = f"figures/{scalar_name}.mp4"
     # Load all frames
     frames = []
-    for i in range(nfiles):
-        fname = f"sae1-{i:03d}.vtk"
-        arr = read_vtk_scalar(fname, scalar_name, shape)
-        frames.append(arr)
+    for expt in expt_list:
+        expt_frames = []
+        for i in range(nfiles):
+            fname = f"{expt}/{expt}-{i:03d}.vtk"
+            arr = read_vtk_scalar(fname, scalar_name, shape)
+            expt_frames.append(arr)
+        frames.append(np.array(expt_frames))
     
     frames = np.array(frames)
 
     # Set up figure
     vmin = frames.min()
     vmax = frames.max()
-    fig, ax = plt.subplots(figsize=(8,4))
-    im = ax.imshow(frames[0], cmap="viridis", origin="lower", aspect="auto",
-                   vmin=vmin, vmax=vmax)
-    cbar = plt.colorbar(im, ax=ax, label=scalar_name)
-    ax.set_xlabel("Index (20)")
-    ax.set_ylabel("Index (5)")
+    fig, axes = plt.subplots(nrows=1, ncols=4, figsize=(8,4))
+    images = []
+
+    for ax, expt_frames, expt in zip(axes.flatten(), frames, expt_list):
+        im = ax.imshow(expt_frames[0], cmap="viridis", origin="lower", aspect="auto",
+                       vmin=vmin, vmax=vmax)
+        images.append(im)
+        ax.set_title(f"{expt}")
+        ax.set_xticks([])
+        ax.set_yticks([])
+    cbar = fig.colorbar(im, ax=axes.ravel().tolist(),
+                        orientation="horizontal",
+                        fraction=0.05, pad=0.2, label=scalar_name)
 
     def update(frame_idx):
-        im.set_data(frames[frame_idx])
-        ax.set_title(f"{scalar_name} timestep {frame_idx}")
-        return [im]
+        for im, expt_frames in zip(images, frames):
+            im.set_data(expt_frames[frame_idx])
+        fig.suptitle(f"{scalar_name} timestep {frame_idx}")
+        return images
 
-    ani = animation.FuncAnimation(fig, update, frames=len(frames), interval=200, blit=True)
+    ani = animation.FuncAnimation(fig, update, frames=len(frames[0]), interval=200, blit=True)
 
     # Save as mp4
     ani.save(outfile, writer="ffmpeg", fps=5)
@@ -66,4 +79,11 @@ def animate_vtk_series(scalar_name, nfiles=129, shape=(20,10), outfile="animatio
 
 
 # Example usage:
-animate_vtk_series("pH")
+    
+expt_list = ["sae1", "sae2", "sae3", "sae4"]
+
+variable_list = ["Porosity", "Calcite_VF", "SiO2(am)_VF",
+                 "Kaolinite_VF"]
+
+for var in variable_list:
+    animate_vtk_series(expt_list, var)

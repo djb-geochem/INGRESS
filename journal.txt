@@ -89,6 +89,86 @@ SAE1 tuning for Calc_is parameters seems to have similar behaviour to 1D. Calc_i
 
 Added a script in utils "batch_run_pflotran.py" that calls up to 4x run_pflotran.py in parallel. Hopefully will speed things up.
 
+--- 25/09/25 ---
+
+Running PFLOTRAN models in parallel is making things about 4x faster as expected. I ran a full inversion that fits the data well with the current parameters:
+
+                name          prior_mean         prior_stdev   prior_lower_bound   prior_upper_bound           post_mean          post_stdev    post_lower_bound    post_upper_bound
+          sio2_alpha                  -1               1.225               -3.45                1.45           -0.374358           0.0108667           -0.396091           -0.352624
+             sio2_sa                   4                1.75                 0.5                 7.5             4.79696           0.0703375             4.65628             4.93763
+             calc_sa             1.47712                1.25            -1.02288             3.97712            0.239429           0.0439576            0.151513            0.327344
+          calc_sa_vf                 3.6                6.25                -8.9                16.1             1.89957            0.122632              1.6543             2.14483
+
+With    calc_is_vf = 0.00127399
+	calc_is_sa_vf = 2
+	calc_is_sa = 0.14996
+
+Run040 is this run!
+	
+An observation is that the SiO2 drop in SAE3 is fitted much better than in SAE4.
+This is despite the fact that there probably isn't any actual amorphous silica precipitating in SAE3?
+I believe it's really all clay minerals in sAE3... Maybe I need to add kaolinite (& albite) back into the model?
+
+I also updated run_pflotran.py so that it will grab the first number from the last line of the results, regardless of how many lines there are.
+I want to use this to investigate if the number of the z-cells affects results.
+I think it could be possible that closer spacing of the z-cells at the inlet could give markedly different results?
+
+Running with 40 z-cells instead of 20 didn't make much difference
+
+Another idea is to put constraints on where Am-Si precipitates using SEM photos and figuring out a proxy to the VF in the model based on distance from the inlet?
+
+--- 26/09/25 ---
+
+Thinking about porosity, perhaps trying to incorporate "update_porosity".
+
+This could be helpful because whilst SiO2(am) doesn't like to update its surface area with VF, it might like to update it with porosity?
+Porosity should change relatively much more slowly. Although calcite will also be dissolving while it is precipitating. Unclear.
+
+Anyway, if you just put update_porosity in then it starts to calculate porosity as a function of all of the mineral vol_fracs.
+This is a problem as at the moment we only have calcite and SiO2(am) as mineraly, so porosity jumps straight to >90%
+Tweaked the template writer to fill the rest of the rock bulk with quartz, and the template sets quartz kinetic rate to 0.0 so it shouldn't react.
+
+This seems to mess something up in the model though, even before we incorporate update_porosity. 
+It seems calcite area is going to infinity somewhere? - SAE1 seems to work normally.
+
+Trying to refit from the beginning (starting with calc_is and sae1 again)
+
+Problem with this now is due to 3D implementation SAE1 tuning takes a long time!
+
+Ok SAE1 results look similar to before:
+
+     Parameter            
+
+        Name         Value
+
+    ------------  ------------
+
+    calc_is_sa        0.145844
+
+    calc_is_vf      0.00126853
+    
+Interestingly, full inversion results look quite different for Ca:
+
+     Parameter            
+        Name         Value
+    ------------  ------------
+    sio2_alpha       -0.374061
+    sio2_sa            69810.2
+    calc_sa           0.374059
+    calc_sa_vf        0.199701
+
+This actually fits the flattening out of the SAE3 Ca curve much better, as it corresponds to the point at which the added calcite is fully dissolved.
+It does compromise  the fit of SAE4 a bit but overall I like it better.
+SiO2_alpha strongly correlated with sio2_sa
+
+--- 29/09/25 ---
+
+I had a go at implementing kaolinite on the weekend. And trying to get the final SiO2(am)_VF added as a constraint. This is currently just shoehorned inelegantly into pest_control.master.
+Eventually we would want SiO2(am)_VF in SAE3 to be close to zero, and kaolinite to precipitate instead.
+Oh, I also changed the initial SiO2(aq) of each experiment to reflect what the blanks actually are. I could do this for all species but I don't think that's important.
+
+
+
 
   
   

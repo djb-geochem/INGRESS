@@ -43,12 +43,23 @@ def write_pflotran_in(cfg, run_params, expt):
     template = env.get_template("pflotran.master")
     
     expt_CO2 = cfg["expt_conditions"][expt]["CO2"] * 44 / 1e6
-    expt_calc = cfg["expt_conditions"][expt]["calcite"]
+    
+    expt_phi = cfg["expt_conditions"][expt]["porosity"]/100.0
+    
+    expt_bulk = 1-expt_phi
+    
+    expt_calc = expt_bulk * cfg["expt_conditions"][expt]["calcite"]
+
+    expt_qtz = expt_bulk - expt_calc
+    
+    expt_sio2 = cfg["expt_conditions"][expt]["sio2"]
     
     context = {
         **run_params,
         "expt_calc": expt_calc,
-        "expt_CO2": expt_CO2
+        "expt_CO2": expt_CO2,
+        "expt_qtz": expt_qtz
+        "expt_sio2": expt_sio2
     }
     
     
@@ -79,6 +90,12 @@ def write_instructions(cfg, run_params, expt, obsdata):
             ]
             for obs in species_obs:
                 f.write(f"l1 !{obs}!\n")
+        for mineral in run_params["fitted_minerals"]:
+            if expt in run_params["fitted_minerals"][mineral]["active_for"]:
+                flag = run_params["fitted_minerals"][mineral]["flag"]
+                f.write(f"*{flag}*\n")
+                f.write(f"l1 !{mineral}_{expt}!")
+            
 
 def pull_expt_data(expt, species_list):
     df = pd.read_csv("data/raw_data/" + str(expt) + ".csv")
@@ -107,9 +124,9 @@ def build_obs_data(run_params):
                     "ID": row["ID"]
                 }
                 if int(row["ID"][-2:]) <= species_params["n_drop"]:
-                    obs_data[obs_name]["w"] = w/100
+                    obs_data[obs_name]["w"] = w/1000
                 if obs_name in run_params["drop_obs"]:
-                    obs_data[obs_name]["w"] = w/100
+                    obs_data[obs_name]["w"] = w/1000
             
     return dict(obs_data)
         

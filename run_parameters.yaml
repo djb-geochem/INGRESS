@@ -52,7 +52,7 @@ tuned_parameters:
     parubnd:   1e-2         # upper bound
     pargp:     VF           # parameter group
     active:    False         # whether parameter is active in model
-    default:   1e-4         # default value when parameter is inactive
+    default:   0.0          # default value when parameter is inactive
   Calc_alpha:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -69,17 +69,17 @@ tuned_parameters:
     parlbnd:   1e-2         # lower bound
     parubnd:   1e3          # upper bound
     pargp:     SA           # parameter group
-    active:    True         # whether parameter is active in model
-    default:   1.54868      # default value when parameter is inactive
+    active:    False        # whether parameter is active in model
+    default:   0.374059     # default value when parameter is inactive
   Calc_SA_VF:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
-    parval:    3.6           # starting value
-    parlbnd:   -5           # lower bound
-    parubnd:   20           # upper bound
+    parval:    0.5          # starting value
+    parlbnd:   1e-2         # lower bound
+    parubnd:   5            # upper bound
     pargp:     SA_VF        # parameter group
-    active:    True         # whether parameter is active in model
-    default:   1.75291      # default value when parameter is inactive
+    active:    False         # whether parameter is active in model
+    default:   0.199701      # default value when parameter is inactive
   Calc_is_alpha:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -97,7 +97,7 @@ tuned_parameters:
     parubnd:   1e6          # upper bound
     pargp:     SA           # parameter group
     active:    False        # whether parameter is active in model
-    default:   0.14996      # default value when parameter is inactive
+    default:   0.145844     # default value when parameter is inactive
   Calc_is_SA_VF:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -115,8 +115,16 @@ tuned_parameters:
     parubnd:   1e-2         # upper bound
     pargp:     VF           # parameter group
     active:    False        # whether parameter is active in model
-    default:   0.00127399   # default value when parameter is inactive
-
+    default:   0.00126853   # default value when parameter is inactive
+  Kaol_SA:
+    partrans:  log          # transformation
+    parchglim: factor       # change limiter
+    parval:    3e1          # starting value
+    parlbnd:   1e-3         # lower bound
+    parubnd:   1e3          # upper bound
+    pargp:     SA           # parameter group
+    active:    True         # whether parameter is active in model
+    default:   0.374059     # default value when parameter is inactive
 
 experiments:
   - sae1
@@ -137,6 +145,42 @@ fitted_species:
     sigma:    1e-4           # estimated uncertainty (used for weighting)
     n_drop:   3              # n dropped at start
     flag:     Total_Ca++     # flag in output files
+
+fitted_minerals:
+  SiO2_VF:
+    sigma:   1e-3
+    flag:    SiO2(am)_VF
+    active_for:
+      -sae3
+    values:
+      sae3:  0.0
     
-drop_obs: none
+drop_obs: 
+  - pH_SAE2_21
+  - pH_SAE2_22
+  - pH_SAE2_23
+  - pH_SAE2_24
+  - pH_SAE2_25
+  - pH_SAE2_26
+  - pH_SAE2_27
+  - pH_SAE2_28
+  - pH_SAE2_29
+  - pH_SAE2_30
+  - pH_SAE2_31
+  - Ca_SAE2_16
+  - Ca_SAE2_17
+  - Ca_SAE2_18
+  - Ca_SAE2_19
+  - Ca_SAE2_20
+  - Ca_SAE2_21
+  - Ca_SAE2_22
+  - Ca_SAE2_23
+  - Ca_SAE2_24
+  - Ca_SAE2_25
+  - Ca_SAE2_26
+  - Ca_SAE2_27
+  - Ca_SAE2_28
+  - Ca_SAE2_29
+  - Ca_SAE2_30
+  - Ca_SAE2_31
 

@@ -9,6 +9,7 @@ import subprocess
 import sys
 import yaml
 import os
+import numpy as np
 
 
 
@@ -29,6 +30,54 @@ def run_pflotran(expt):
     print(f"[INFO] Finished {expt}")
     return result.stdout
 
+def find_outlet_value(filename, flag):
+    
+    linestart = f"SCALARS {flag}"
+    
+    with open(filename) as f:
+        flagged = False
+        prev_line = None
+        
+        for line in f:
+            
+            if not flagged:
+                if line.startswith(linestart):
+                    flagged = True
+                continue
+            
+            if line == "\n":
+                return prev_line.split()[0]
+            else:
+                prev_line = line
+    
+    return None # if no match found
+
+def find_mineral_vf(filename, flag):
+    
+    linestart = f"SCALARS {flag}"
+    
+    with open(filename) as f:
+        flagged = False
+        vol_fracs = []
+        
+        for line in f:
+            
+            if not flagged:
+                if line.startswith(linestart):
+                    flagged = True
+                continue
+            
+            if line == "\n":
+                avg = np.average(np.array(vol_fracs, dtype=float))
+                return f"{avg:.6E}"
+            if line.startswith("LOOKUP") == False:
+                vol_fracs.append(line.split())
+
+
+    
+    return None # if no match found
+            
+
 def process_results(cfg, expt):
     
     result_steps = range(1, 32)
@@ -44,12 +93,15 @@ def process_results(cfg, expt):
     for step in result_steps:
         label = step*4 + 1
         vtkname = f"{expt}-{label:03d}.vtk"
-        with open(vtkname) as vtkfile:
-            lines = vtkfile.readlines()
-            for flag in flags:
-                result = lines[flag["line"]].split()[0]
+        
+        for flag in flags:
+            if flag["type"] == "species":
+                result = find_outlet_value(vtkname, flag["name"])
                 processed_results[flag["name"]].append(result)
-    
+                continue
+            if flag["type"] == "mineral" and step == 31:
+                result = find_mineral_vf(vtkname, flag["name"])
+                processed_results[flag["name"]].append(result)
     resultsfile = f"results_{expt}.txt"
     
     with open(resultsfile, 'w') as f:

@@ -46,7 +46,7 @@ END
 CHEMISTRY
   #LOG_FORMULATION
   TRUNCATE_CONCENTRATION 1e-30
-  #UPDATE_POROSITY
+  UPDATE_POROSITY
   #UPDATE_PERMEABILITY
   PRIMARY_SPECIES
     H+
@@ -91,10 +91,37 @@ CHEMISTRY
     Calcite
     Calcite_is
     SiO2(am)
+    Quartz
+    Kaolinite
 
  
   /
   MINERAL_KINETICS
+    Kaolinite
+      SURFACE_AREA_FUNCTION CONSTANT
+      PREFACTOR
+        RATE_CONSTANT -11.31 mol/m^2-sec     # <- vary this by 1
+        ACTIVATION_ENERGY 65.9
+        PREFACTOR_SPECIES H+
+          ALPHA 0.777                        # <- vary this by 0.2
+        /
+      /
+      PREFACTOR
+        RATE_CONSTANT -13.18 mol/m^2-sec     # <- vary this by 1
+        ACTIVATION_ENERGY 22.2
+      /
+      PREFACTOR
+        RATE_CONSTANT -17.05 mol/m^2-sec
+        ACTIVATION_ENERGY 17.9
+        PREFACTOR_SPECIES H+
+          ALPHA -0.472
+        /
+      /
+    /
+    Quartz
+      SURFACE_AREA_FUNCTION CONSTANT
+      RATE_CONSTANT 0.0
+    /
     Calcite
       SURFACE_AREA_FUNCTION VOLUME_FRACTION_RATIO
       SURFACE_AREA_VOL_FRAC_POWER {{ " ~ Calc_SA_VF ~ " if tuned_parameters["Calc_SA_VF"].active else tuned_parameters["Calc_SA_VF"].default }}
@@ -309,7 +336,7 @@ CONSTRAINT initial_constraint
  
     Cl-          0.026398         Z
     SO4--        0.004397         T
-    SiO2(aq)     0.014126         T
+    SiO2(aq)     {{ expt_sio2 }}         T
     Ca++         7.008879e-5      T
     Fe++         1.257524e-6      T
     K+           0.002668         T
@@ -327,7 +354,8 @@ CONSTRAINT initial_constraint
     Calcite         {{ expt_calc }}   {{ " ~ Calc_SA ~ " if tuned_parameters["Calc_SA"].active else tuned_parameters["Calc_SA"].default }} cm^2/cm^3
     Calcite_is      {{ " ~ Calc_is_VF ~ " if tuned_parameters["Calc_is_VF"].active else tuned_parameters["Calc_is_VF"].default }}  {{ " ~ Calc_is_SA ~ " if tuned_parameters["Calc_is_SA"].active else tuned_parameters["Calc_is_SA"].default }} cm^2/cm^3
     SiO2(am)        {{ " ~ SiO2_VF ~ " if tuned_parameters["SiO2_VF"].active else tuned_parameters["SiO2_VF"].default }}  {{ " ~ SiO2_SA ~ " if tuned_parameters["SiO2_SA"].active else tuned_parameters["SiO2_SA"].default }} cm^2/cm^3
-
+    Quartz          {{ expt_qtz }}  1.0  cm^2/cm^3
+    Kaolinite       0.0  {{ " ~ Kaol_SA ~ " if tuned_parameters["Kaol_SA"].active else tuned_parameters["Kaol_SA"].default }}
  
   /
 END

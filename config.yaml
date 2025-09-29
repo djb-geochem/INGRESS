@@ -14,6 +14,7 @@ expt_conditions:
     CO2:         10     #ppm
     rock_mass:   24.29  #g
     calcite:     0.0    #wt%
+    sio2:        0.014080088
     porosity:    43.01  #%
     flow_rate:   5      #ml/hr
     duration:    31     #days
@@ -24,6 +25,7 @@ expt_conditions:
     CO2:         10     #ppm
     rock_mass:   24.29  #g
     calcite:     1.5e-2 #wt%
+    sio2:        0.014136678
     porosity:    46.01  #%
     flow_rate:   5      #ml/hr
     duration:    31     #days
@@ -34,6 +36,7 @@ expt_conditions:
     CO2:         2000   #ppm
     rock_mass:   24.30  #g
     calcite:     1.5e-2 #wt%
+    sio2:        0.013901478
     porosity:    45.20  #%
     flow_rate:   5      #ml/hr
     duration:    31     #days
@@ -44,16 +47,21 @@ expt_conditions:
     CO2:         600    #ppm
     rock_mass:   24.30  #g
     calcite:     1.5e-2 #wt%
+    sio2:        0.013723369
     porosity:    45.20  #%
     flow_rate:   5      #ml/hr
     duration:    31     #days
     
 output_flags:
   - name: pH
-    line: 989
+    type: species
   - name: Total_SiO2(aq)
-    line: 1037
+    type: species
   - name: Total_Ca++
-    line: 1085
-  
-  
+    type: species
+  - name: SiO2(am)_VF
+    type: mineral
+  - name: Calcite_VF
+    type: mineral
+  - name: Calcite_is_VF
+    type: mineral  
