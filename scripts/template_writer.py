@@ -58,7 +58,7 @@ def write_pflotran_in(cfg, run_params, expt):
         **run_params,
         "expt_calc": expt_calc,
         "expt_CO2": expt_CO2,
-        "expt_qtz": expt_qtz
+        "expt_qtz": expt_qtz,
         "expt_sio2": expt_sio2
     }
     
@@ -80,21 +80,22 @@ def write_instructions(cfg, run_params, expt, obsdata):
     with open(ins_filename, 'w') as f:
         f.write("pif *\n")
         for species in run_params["fitted_species"]:
-            flag = run_params["fitted_species"][species]["flag"]
-            f.write(f"*{flag}*\n")
-            species_obs = [
-                obs_name
-                for obs_name, data in obsdata.items()
-                if data["expt"] == expt 
-                and obs_name.split("_")[0] == species
-            ]
-            for obs in species_obs:
-                f.write(f"l1 !{obs}!\n")
-        for mineral in run_params["fitted_minerals"]:
-            if expt in run_params["fitted_minerals"][mineral]["active_for"]:
-                flag = run_params["fitted_minerals"][mineral]["flag"]
+            if run_params["fitted_species"][species]["type"] == "aq":
+                flag = run_params["fitted_species"][species]["flag"]
                 f.write(f"*{flag}*\n")
-                f.write(f"l1 !{mineral}_{expt}!")
+                species_obs = [
+                    obs_name
+                    for obs_name, data in obsdata.items()
+                    if data["expt"] == expt 
+                    and obs_name.split("_")[0] == species
+                ]
+                for obs in species_obs:
+                    f.write(f"l1 !{obs}!\n")
+        # for mineral in run_params["fitted_minerals"]:
+        #     if expt in run_params["fitted_minerals"][mineral]["active_for"]:
+        #         flag = run_params["fitted_minerals"][mineral]["flag"]
+        #         f.write(f"*{flag}*\n")
+        #         f.write(f"l1 !{mineral}_{expt}!")
             
 
 def pull_expt_data(expt, species_list):
@@ -113,20 +114,21 @@ def build_obs_data(run_params):
         
         for species in species_list:
             species_params = run_params["fitted_species"][species]
-            w = 1/float(species_params["sigma"])
-            for _, row in df.iterrows():
-                obs_name = f"{species}_{row['ID']}"
-                obs_data[obs_name] = {
-                    "val": row[species],  # get species value dynamically
-                    "w": w,
-                    "expt": expt,
-                    "species": species,
-                    "ID": row["ID"]
-                }
-                if int(row["ID"][-2:]) <= species_params["n_drop"]:
-                    obs_data[obs_name]["w"] = w/1000
-                if obs_name in run_params["drop_obs"]:
-                    obs_data[obs_name]["w"] = w/1000
+            if species_params["type"] == "aq":
+                w = 1/float(species_params["sigma"])
+                for _, row in df.iterrows():
+                    obs_name = f"{species}_{row['ID']}"
+                    obs_data[obs_name] = {
+                        "val": row[species],  # get species value dynamically
+                        "w": w,
+                        "expt": expt,
+                        "species": species,
+                        "ID": row["ID"]
+                    }
+                    if int(row["ID"][-2:]) <= species_params["n_drop"]:
+                        obs_data[obs_name]["w"] = w/1000
+                    if obs_name in run_params["drop_obs"]:
+                        obs_data[obs_name]["w"] = w/1000
             
     return dict(obs_data)
         

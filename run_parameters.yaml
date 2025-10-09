@@ -70,7 +70,7 @@ tuned_parameters:
     parubnd:   1e3          # upper bound
     pargp:     SA           # parameter group
     active:    False        # whether parameter is active in model
-    default:   0.374059     # default value when parameter is inactive
+    default:   0.584059     # default value when parameter is inactive
   Calc_SA_VF:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -78,8 +78,8 @@ tuned_parameters:
     parlbnd:   1e-2         # lower bound
     parubnd:   5            # upper bound
     pargp:     SA_VF        # parameter group
-    active:    False         # whether parameter is active in model
-    default:   0.199701      # default value when parameter is inactive
+    active:    False        # whether parameter is active in model
+    default:   0.199701     # default value when parameter is inactive
   Calc_is_alpha:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -101,12 +101,12 @@ tuned_parameters:
   Calc_is_SA_VF:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
-    parval:    0.66         # starting value
-    parlbnd:   -5           # lower bound
+    parval:    3.5          # starting value
+    parlbnd:   0.1          # lower bound
     parubnd:   20           # upper bound
     pargp:     SA_VF        # parameter group
     active:    False        # whether parameter is active in model
-    default:   2            # default value when parameter is inactive
+    default:   3.5          # default value when parameter is inactive
   Calc_is_VF:
     partrans:  none         # transformation
     parchglim: relative     # change limiter
@@ -115,7 +115,7 @@ tuned_parameters:
     parubnd:   1e-2         # upper bound
     pargp:     VF           # parameter group
     active:    False        # whether parameter is active in model
-    default:   0.00126853   # default value when parameter is inactive
+    default:   0.00226853   # default value when parameter is inactive
   Kaol_SA:
     partrans:  log          # transformation
     parchglim: factor       # change limiter
@@ -133,18 +133,21 @@ experiments:
   - sae4
 
 fitted_species:
-  pH:
-    sigma:    0.2            # estimated uncertainty (used for weighting)
-    n_drop:   3              # n dropped at start
-    flag:     pH             # flag in output files
+#  pH:
+#    sigma:    0.2            # estimated uncertainty (used for weighting)
+#    n_drop:   3              # n dropped at start
+#    flag:     pH             # flag in output files
+#    type:     aq
   SiO2:
     sigma:    1e-4           # estimated uncertainty (used for weighting)
     n_drop:   3              # n dropped at start
     flag:     Total_SiO2(aq) # flag in output files
-  Ca:
-    sigma:    1e-4           # estimated uncertainty (used for weighting)
-    n_drop:   3              # n dropped at start
-    flag:     Total_Ca++     # flag in output files
+    type:     aq
+#  Ca:
+#    sigma:    1e-4           # estimated uncertainty (used for weighting)
+#    n_drop:   3              # n dropped at start
+#    flag:     Total_Ca++     # flag in output files
+#    type:     aq
 
 fitted_minerals:
   SiO2_VF:

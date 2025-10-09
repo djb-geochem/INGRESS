@@ -28,7 +28,8 @@ restart estimation
 {% for obs_name, obs in obsdata.items() -%}
 {{ obs.species }}_{{ obs.ID }} {{ obs.val }} {{ obs.w }} {{ obs.species }}_{{ obs.expt }}
 {% endfor %}
-SiO2_VF_SAE3 0.0 100000 SiO2_VF
+
+#SiO2_VF_SAE3 0.0 100000 SiO2_VF
 
 * model command line
 python ../../utils/batch_run_pflotran.py {% for expt in experiments -%} {{ expt }} {% endfor %}

@@ -167,8 +167,19 @@ I had a go at implementing kaolinite on the weekend. And trying to get the final
 Eventually we would want SiO2(am)_VF in SAE3 to be close to zero, and kaolinite to precipitate instead.
 Oh, I also changed the initial SiO2(aq) of each experiment to reflect what the blanks actually are. I could do this for all species but I don't think that's important.
 
+--- 01/10/25 ---
 
+I have finally got round to moving the git repo to github.
+I also decided to christen the project - INGRESS
+INvestigation/INversion of Geothermal Reinjection Experiments (for) Subsurface Simulation
+Name is quite cringe and maybe subject to change
 
+--- 09/10/25 ---
+
+Just messing around really - trying to fit all calcite parameters across 4 experiments. It wants to push calc_is_vf to unreasonable levels.
+
+The amount of ca dissolved in SAE3 requires a minimum VF of calc + calc_is of 0.0086
+(calculation in sae google sheet)
 
   
   

@@ -43,7 +43,7 @@ def calculate_derived_params(cfg, run_params):
     active_pargp = set([i["pargp"] for i in run_params["tuned_parameters"].values()])
     npargp = len(active_pargp)
     npar = len(run_params["tuned_parameters"])
-    nobsgp = len(run_params["fitted_species"]) + len(run_params["fitted_minerals"])
+    nobsgp = len(run_params["fitted_species"])
     nsamp = sum(cfg["expt_conditions"][expt]["duration"] for expt in run_params["experiments"])
     nobs = nsamp * nobsgp
     ntplfle = len(run_params["experiments"])
@@ -67,8 +67,8 @@ def calculate_derived_params(cfg, run_params):
         for species in run_params["fitted_species"]
     ]
     
-    for mineral in run_params["fitted_minerals"]:
-        run_params["obsgps"].append(f"{mineral}")
+    # for mineral in run_params["fitted_minerals"]:
+    #     run_params["obsgps"].append(f"{mineral}")
     
     for pargp in run_params["parameter_groups"]:
         run_params["parameter_groups"][pargp]["active"] = pargp in active_pargp

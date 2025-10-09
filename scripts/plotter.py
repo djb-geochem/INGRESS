@@ -13,11 +13,37 @@ import numpy as np
 import os
 import math
 
+default_params = {
+    "experiments": ["sae1", "sae2", "sae3", "sae4"],
+    "fitted_species": {
+        "pH": {
+            "sigma": 0.2,
+            "n_drop": 3,
+            "flag": "pH"
+        },
+        "SiO2": {
+            "sigma": 1e-4,
+            "n_drop": 3,
+            "flag": "Total_SiO2(aq)"
+        },
+        "Ca": {
+            "sigma": 1e-4,
+            "n_drop": 3,
+            "flag": "Total_Ca++"
+        }
+    }
+}
+
+
 def plot_figures(run_params):
+    
+    if run_params == None:
+        run_params = default_params
     
     plot_correlation_matrix()
     for species in run_params["fitted_species"]:
-        plot_model_fit(run_params, species)
+        if run_params["fitted_species"][species]["type"] == "aq":
+            plot_model_fit(run_params, species)
 
 def plot_correlation_matrix():
     
@@ -152,6 +178,4 @@ def best_subplots(n, figsize_scale=3):
 
     return fig, axes[:n]
 
-if __name__ == "__main__":
-    
-    plot_figures()
+#%%

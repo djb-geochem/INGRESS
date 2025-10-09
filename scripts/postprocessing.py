@@ -9,7 +9,7 @@ import subprocess
 
 
 def postprocess():
-    subprocess.run(["rm", "-rf", "../lastrun/*"])
+    subprocess.run("rm -rf ../lastrun/*", shell=True, check=True)
     subprocess.run("cp -rf * ../lastrun/", shell=True, check=True)
     
 
