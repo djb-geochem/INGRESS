@@ -181,5 +181,19 @@ Just messing around really - trying to fit all calcite parameters across 4 exper
 The amount of ca dissolved in SAE3 requires a minimum VF of calc + calc_is of 0.0086
 (calculation in sae google sheet)
 
-  
+--- 10/10/25 ---
+
+Overnight inversion for sio2 and kaol parameters actually fits the data pretty well.
+
+     Parameter            
+        Name         Value
+    ------------  ------------
+    sio2_alpha       -0.51632703098
+    sio2_sa           7.12172e+03
+    calc_sa           0.584059
+    calc_sa_vf        0.199701
+    calc_is_vf        0.00226853
+    calc_is_sa        0.145844
+    calc_is_sa_vf     3.5
+    kaol_sa           7.73840e-03 
   
