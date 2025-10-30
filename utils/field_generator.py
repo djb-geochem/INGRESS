@@ -5,30 +5,66 @@ Created on Tue Oct 28 18:03:49 2025
 
 @author: user
 """
-
+import sys
 import numpy as np
 import gstools as gs
 import matplotlib.pyplot as plt
 
-x = y = np.arange(100)
+def variogram(nx, nz, var=1, len_scale=1e3, anis=1e-2):
+    
+    model = gs.Exponential(dim=2, var=var,
+                           len_scale=len_scale, anis=anis) 
+    
+    x = range(nx)
+    z = range(nz)
+    
+    field = gs.SRF(model)#, seed=19921026)
+    
+    Y = field((x, z), mesh_type="structured")
+    
+    return Y
 
-model_1 = gs.Exponential(dim=2, var=1, len_scale=1e3, anis=1e-2)
-model_2 = gs.Gaussian(dim=2, var=1, len_scale=1e2, anis=1e-2)
+def porosity_field(Y, avg_phi=0.05):
+    
+    phi = avg_phi * np.exp(Y)
+    
+    return phi
 
-model_3 = model_1 + model_2
+def calcite_field(Y, avg_calc=0.01, alpha=0.05, noise=0.01):
+    
+    calc = avg_calc + alpha * (-Y) + noise*np.random.randn(*Y.shape)
+    
+    return calc
 
-fig = plt.figure(figsize=[10, 4])
+def main(nx, nz):
+    
+    vgm = variogram(nx, nz)
+    
+    phi = porosity_field(vgm)
+    
+    calc = calcite_field(vgm)
+    
+    return phi.transpose(), calc.transpose()
+
+if __name__ == "__main__":
+    
+    nx = sys.argv[1]
+    nz = sys.argv[2]
+    
+    main(nx, nz)
+#%%
+phi, calc = main(100, 100)
+
+fig = plt.figure()
 
 ax1 = fig.add_subplot(121)
+
+ax1.imshow(phi)
+
 ax2 = fig.add_subplot(122)
 
-srf_1 = gs.SRF(model_1, seed=19921026)
-srf_1.structured([x,y])
-srf_1.plot(fig=fig, ax=ax1)
+ax2.imshow(calc)
 
-srf_2 = gs.SRF(model_2, seed=19921026)
-srf_2.structured([x,y])
-srf_2.plot(fig=fig, ax=ax2)
-
-srf_1.vtk_export(filename="porosity_field.vtk")
-
+    
+    
+    
