@@ -196,4 +196,16 @@ Overnight inversion for sio2 and kaol parameters actually fits the data pretty w
     calc_is_sa        0.145844
     calc_is_sa_vf     3.5
     kaol_sa           7.73840e-03 
+    
+--- 30/10/25 ---
+
+Starting to think about a reservoir model. Making a synthetic reservoir using gstools python package seems like a good starting point. 
+Putting this in field_generator.py
+
+Plan is to have a field generator that will make a plausible looking porosity, permeability, field which can maybe have variable calcite too.
+Ideally we can generate a pflotran input file using jinja2 that can be easily scalable in terms of number of cells.
+
+--- 31/10/25 ---
+
+I also need to make a PFLOTRAN model that actually works with the reinjection geometry.
   

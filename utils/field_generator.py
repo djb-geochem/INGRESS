@@ -48,12 +48,15 @@ def main(nx, nz):
 
 if __name__ == "__main__":
     
-    nx = sys.argv[1]
-    nz = sys.argv[2]
+    if len(sys.argv) != 3:
+        print(f"Usage: {sys.argv[0]} <nx> <nz>")
+        sys.exit(1)
+    
+    nx, nz = sys.argv[1], sys.argv[2]
     
     main(nx, nz)
 #%%
-phi, calc = main(100, 100)
+phi, calc = main(200, 100)
 
 fig = plt.figure()
 
