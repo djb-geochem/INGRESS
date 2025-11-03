@@ -83,7 +83,7 @@ def animate_vtk_series(expt_list, scalar_name, nfiles=129, shape=(20,10)):
 expt_list = ["reservoir"]
 
 variable_list = ["Liquid_Pressure", "Calcite_VF", "SiO2(am)_VF",
-                 "Total_Tracer", "Porosity"]
+                 "Total_Tracer", "Porosity", "Permeability"]
 
 for var in variable_list:
     animate_vtk_series(expt_list, var)
