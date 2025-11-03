@@ -38,7 +38,7 @@ def animate_vtk_series(expt_list, scalar_name, nfiles=129, shape=(20,10)):
     for expt in expt_list:
         expt_frames = []
         for i in range(nfiles):
-            fname = f"{expt}/{expt}-{i:03d}.vtk"
+            fname = f"{expt}-{i:03d}.vtk"
             arr = read_vtk_scalar(fname, scalar_name, shape)
             expt_frames.append(arr)
         frames.append(np.array(expt_frames))
@@ -48,17 +48,17 @@ def animate_vtk_series(expt_list, scalar_name, nfiles=129, shape=(20,10)):
     # Set up figure
     vmin = frames.min()
     vmax = frames.max()
-    fig, axes = plt.subplots(nrows=1, ncols=4, figsize=(8,4))
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,4))
     images = []
 
-    for ax, expt_frames, expt in zip(axes.flatten(), frames, expt_list):
+    for expt_frames, expt in zip(frames, expt_list):
         im = ax.imshow(expt_frames[0], cmap="viridis", origin="lower", aspect="auto",
                        vmin=vmin, vmax=vmax)
         images.append(im)
         ax.set_title(f"{expt}")
         ax.set_xticks([])
         ax.set_yticks([])
-    cbar = fig.colorbar(im, ax=axes.ravel().tolist(),
+    cbar = fig.colorbar(im, ax=ax,
                         orientation="horizontal",
                         fraction=0.05, pad=0.2, label=scalar_name)
 
@@ -80,10 +80,10 @@ def animate_vtk_series(expt_list, scalar_name, nfiles=129, shape=(20,10)):
 
 # Example usage:
     
-expt_list = ["sae1", "sae2", "sae3", "sae4"]
+expt_list = ["reservoir"]
 
-variable_list = ["Porosity", "Calcite_VF", "SiO2(am)_VF",
-                 "Kaolinite_VF", "Total_Al+++"]
+variable_list = ["Liquid_Pressure", "Calcite_VF", "SiO2(am)_VF",
+                 "Total_Tracer", "Porosity"]
 
 for var in variable_list:
     animate_vtk_series(expt_list, var)

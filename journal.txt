@@ -208,4 +208,10 @@ Ideally we can generate a pflotran input file using jinja2 that can be easily sc
 --- 31/10/25 ---
 
 I also need to make a PFLOTRAN model that actually works with the reinjection geometry.
-  
+
+--- 03/11/25 ---
+ 
+I have a base case reinjection model now in the sandbox which appears to have the correct reinjection geometry, although nothing is really scaled properly yet.
+
+I'm currently using the FLOW_CONDITION type RATE scaled_volumetric_rate to inject fluid from the well feedzone.
+This may not be how I eventually want to do it as I imagine keeping the pressure fixed and allowing flow rate to respond to porosity, permeability changes is more useful.  

@@ -34,7 +34,7 @@ END
 #=========================== discretization ===================================
 GRID
   TYPE STRUCTURED CYLINDRICAL
-  NXYZ 100 1 100
+  NXYZ 10 1 20
   BOUNDS
     0.d0 0.
     100. 100.
@@ -44,7 +44,7 @@ END
 CHEMISTRY
   #LOG_FORMULATION
   TRUNCATE_CONCENTRATION 1e-30
-  #UPDATE_POROSITY
+  UPDATE_POROSITY
   #UPDATE_PERMEABILITY
   PRIMARY_SPECIES
     H+
@@ -168,7 +168,7 @@ CHEMISTRY
  
  
   /
-  DATABASE ../../../hanford.dat
+  DATABASE hanford.dat
   #LOG_FORMULATION
   MOLAL
 #  OPERATOR_SPLITTING
@@ -284,19 +284,19 @@ REGION outer
 END
 
 REGION feedzone
-  FACE west
   COORDINATES
     0.0 0.0 30.0
-    0.0 1.0 70.0
+    1.0 1.0 70.0
   /
 END
 
 #=========================== flow conditions ==================================
 FLOW_CONDITION initial_pressure
   TYPE
-    LIQUID_PRESSURE DIRICHLET
+    LIQUID_PRESSURE hydrostatic
     TEMPERATURE DIRICHLET
   /
+  DATUM 0. 0. 0.
   LIQUID_PRESSURE 7.5d6
   TEMPERATURE 150.
 END
@@ -312,13 +312,13 @@ FLOW_CONDITION outer_pressure
   TEMPERATURE 150.
 END
  
-FLOW_CONDITION inlet_flux
+FLOW_CONDITION well_flux
   TYPE
-    LIQUID_PRESSURE DIRICHLET
+    RATE scaled_volumetric_rate PERM
     TEMPERATURE DIRICHLET
   /
-  LIQUID_PRESSURE 7.5d7
-  TEMPERATURE 150.
+  RATE 1e5 m^3/d
+  TEMPERATURE 150. 
 END
 #=========================== transport conditions =============================
 TRANSPORT_CONDITION background_conc
@@ -399,14 +399,14 @@ END
 BOUNDARY_CONDITION outlet
   FLOW_CONDITION initial_pressure
   TRANSPORT_CONDITION background_conc
-  REGION top
+  REGION outer
 END
  
-BOUNDARY_CONDITION inlet
-  FLOW_CONDITION inlet_flux
+SOURCE_SINK inlet
+  FLOW_CONDITION well_flux
   #FLOW_CONDITION inlet_pressure
   TRANSPORT_CONDITION inlet_conc
-  REGION bottom
+  REGION feedzone
 END
 #=========================== stratigraphy couplers ============================
 STRATA
