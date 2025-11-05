@@ -9,27 +9,21 @@ SIMULATION
     /
   /
 END
- 
+
 SUBSURFACE
- 
+
 #=========================== numerical methods ================================
 NUMERICAL_METHODS FLOW
- 
   LINEAR_SOLVER
-    SOLVER DIRECT
+    SOLVER ITERATIVE
   /
- 
 END
  
 NUMERICAL_METHODS TRANSPORT
- 
   LINEAR_SOLVER
-    SOLVER DIRECT
+    SOLVER ITERATIVE
   /
- 
 END
- 
- 
  
 #=========================== discretization ===================================
 GRID
@@ -40,6 +34,7 @@ GRID
     100. 100.
   /
 END
+
 #=========================== chemistry ========================================
 CHEMISTRY
   #LOG_FORMULATION
@@ -53,15 +48,14 @@ CHEMISTRY
     Ca++
     Cl-
     CO2(aq)
- 
     Na+
     K+
     Mg++
     Fe++
-    Cu++
     SO4--
     Tracer
   /
+  
   SECONDARY_SPECIES
     Al(OH)2+
     Al(OH)4-
@@ -81,20 +75,22 @@ CHEMISTRY
     NaCO3-
     OH-
   /
+  
   ACTIVE_GAS_SPECIES
     GAS_TRANSPORT_IS_UNVETTED
     CO2(g)
   /
+  
   MINERALS
     Calcite
     Calcite_is
     SiO2(am)
     Quartz
     Kaolinite
-
- 
   /
+  
   MINERAL_KINETICS
+  
     Kaolinite
       SURFACE_AREA_FUNCTION CONSTANT
       PREFACTOR
@@ -116,10 +112,12 @@ CHEMISTRY
         /
       /
     /
+    
     Quartz
       SURFACE_AREA_FUNCTION CONSTANT
       RATE_CONSTANT 0.0
     /
+    
     Calcite
       SURFACE_AREA_FUNCTION VOLUME_FRACTION_RATIO
       SURFACE_AREA_VOL_FRAC_POWER 0.199701
@@ -134,8 +132,8 @@ CHEMISTRY
         RATE_CONSTANT -5.81 mol/m^2-sec     
         ACTIVATION_ENERGY 23.5
       /
-      
     /
+    
     Calcite_is
       SURFACE_AREA_FUNCTION VOLUME_FRACTION_RATIO
       SURFACE_AREA_VOL_FRAC_POWER 3.5
@@ -149,10 +147,8 @@ CHEMISTRY
       PREFACTOR
         RATE_CONSTANT -5.81 mol/m^2-sec
         ACTIVATION_ENERGY 23.5
-      /
-      
+      /     
     /
-
 
     SiO2(am)
       SURFACE_AREA_FUNCTION CONSTANT
@@ -163,11 +159,9 @@ CHEMISTRY
           ALPHA -0.51632703098                           
         /
       /
-    /
-
- 
- 
+    /  
   /
+  
   DATABASE hanford.dat
   #LOG_FORMULATION
   MOLAL
@@ -184,10 +178,6 @@ CHEMISTRY
     MINERAL_SURFACE_AREA
   /
 END
- 
-#=========================== solver options ===================================
- 
- 
  
 #=========================== fluid properties =================================
 FLUID_PROPERTY
@@ -352,8 +342,6 @@ CONSTRAINT initial_constraint
     Na+          0.031377         T
     CO2(aq)      0.01             T
  
-    Cu++            1.e-10        T
- 
     Tracer          1.d-30        T
   /
   MINERALS
@@ -382,14 +370,12 @@ CONSTRAINT inlet_constraint_1
     Na+          0.031377         T
     CO2(aq)      0.01             T
  
-    Cu++            1.e-10        T
- 
     Tracer          1.d-10        T
   /
 END
  
 #=========================== condition couplers ===============================
-# initial condition
+
 INITIAL_CONDITION
   FLOW_CONDITION initial_pressure
   TRANSPORT_CONDITION background_conc
@@ -408,12 +394,12 @@ SOURCE_SINK inlet
   TRANSPORT_CONDITION inlet_conc
   REGION feedzone
 END
+
 #=========================== stratigraphy couplers ============================
 STRATA
   REGION all
   MATERIAL soil1
 END
- 
  
 END_SUBSURFACE
  

@@ -214,4 +214,16 @@ I also need to make a PFLOTRAN model that actually works with the reinjection ge
 I have a base case reinjection model now in the sandbox which appears to have the correct reinjection geometry, although nothing is really scaled properly yet.
 
 I'm currently using the FLOW_CONDITION type RATE scaled_volumetric_rate to inject fluid from the well feedzone.
-This may not be how I eventually want to do it as I imagine keeping the pressure fixed and allowing flow rate to respond to porosity, permeability changes is more useful.  
+This may not be how I eventually want to do it as I imagine keeping the pressure fixed and allowing flow rate to respond to porosity, permeability changes is more useful.
+
+--- 05/11/25 ---
+
+Need to scale the reinjection model properly, and implement the random field generation, and make grid log-scaled.
+
+In response to the constant pressure vs constant flow rate point above, I note that the cylindrical injection example in the pflotran readme uses an origin x=0.3, so the well is basically outside the model domain?
+
+
+
+
+
+
