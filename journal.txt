@@ -222,8 +222,18 @@ Need to scale the reinjection model properly, and implement the random field gen
 
 In response to the constant pressure vs constant flow rate point above, I note that the cylindrical injection example in the pflotran readme uses an origin x=0.3, so the well is basically outside the model domain?
 
+Have swtiched to an iterative solver for the reservoir model, which should allow easy multithreading with mpirun as the model scales up.
 
+--- 06/11/25 ---
 
+Rescaling reservoir model
 
-
+r = 20km (x-axis)
+z = 300m
+feedzone = 100m - 200m
+t = 5 yrs (can increase later)
+output_period = 100h (438 steps)
+injection rate = ?
+perm_x = 1e-12 (this is too high for greywacke but reasonable if fractured)
+perm_z = 1e-13
 

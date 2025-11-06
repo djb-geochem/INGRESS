@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-def read_vtk_scalar(filename, scalar_name, shape=(10,20)):
+def read_vtk_scalar(filename, scalar_name, shape=(100,20)):
     data = []
     capture = False
     
@@ -26,7 +26,7 @@ def read_vtk_scalar(filename, scalar_name, shape=(10,20)):
     return np.array(data).reshape(shape)
 
 
-def animate_vtk_series(expt_list, scalar_name, nfiles=129, shape=(20,10)):
+def animate_vtk_series(expt_list, scalar_name, nfiles=400, shape=(20,100)):
     """
     Loads scalar arrays from multiple vtk files and animates them.
     Saves to MP4 using ffmpeg.
