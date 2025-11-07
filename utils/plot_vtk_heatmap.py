@@ -25,7 +25,7 @@ def read_vtk_scalar(filename, scalar_name, shape=(100,20)):
 
     return np.array(data).reshape(shape)
 
-
+velocities = ["Vlx", "Vlz"]
 def animate_vtk_series(expt_list, scalar_name, nfiles=400, shape=(20,100)):
     """
     Loads scalar arrays from multiple vtk files and animates them.
@@ -38,7 +38,11 @@ def animate_vtk_series(expt_list, scalar_name, nfiles=400, shape=(20,100)):
     for expt in expt_list:
         expt_frames = []
         for i in range(nfiles):
-            fname = f"{expt}-{i:03d}.vtk"
+            if scalar_name in velocities:
+                vel = "vel-"
+            else:
+                vel = ""
+            fname = f"{expt}-{vel}{i:03d}.vtk"
             arr = read_vtk_scalar(fname, scalar_name, shape)
             expt_frames.append(arr)
         frames.append(np.array(expt_frames))
@@ -79,11 +83,12 @@ def animate_vtk_series(expt_list, scalar_name, nfiles=400, shape=(20,100)):
 
 
 # Example usage:
-    
+#%%
 expt_list = ["reservoir"]
 
-variable_list = ["Liquid_Pressure", "Calcite_VF", "SiO2(am)_VF",
-                 "Total_Tracer", "Porosity", "Permeability"]
+variable_list = ["Liquid_Pressure", "Calcite_VF", "SiO2(am)_VF", "pH",
+                 "Total_Tracer", "Porosity", "Permeability", "Vlx", "Vlz"]
+
 
 for var in variable_list:
     animate_vtk_series(expt_list, var)

@@ -237,3 +237,11 @@ injection rate = ?
 perm_x = 1e-12 (this is too high for greywacke but reasonable if fractured)
 perm_z = 1e-13
 
+reservoir pressure = 1e7 Pa (=100 bar, with hydrostatic gradient)
+injection pressure = 1.5e7 Pa (=150 bar)
+
+--- 07/11/25 ---
+
+Working on porosity field generation, have switched reservoir.in to use a pressure boundary condition from an x-origin of 0.1 m to represent the feedzone.
+Seems to still give sensible results
+

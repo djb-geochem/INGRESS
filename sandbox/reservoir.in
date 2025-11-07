@@ -29,9 +29,33 @@ END
 GRID
   TYPE STRUCTURED CYLINDRICAL
   NXYZ 100 1 20
-  BOUNDS
-    0. 0.
-    20.d3 300.
+  ORIGIN 0.1 0. 0.
+  DXYZ
+    1.2982271e-02 1.46676646e-02 1.65718605e-02 1.87232644e-02 2.11539693e-02 \
+    2.39002349e-02 2.70030282e-02 3.05086345e-02 3.44693481e-02 3.89442523e-02 \
+    4.40001006e-02 4.97123129e-02 5.61661001e-02 6.34577354e-02 7.16959906e-02 \
+    8.10037583e-02 9.15198858e-02 1.03401245e-01 1.16825075e-01 1.31991623e-01 \
+    1.49127133e-01 1.68487222e-01 1.90360689e-01 2.15073830e-01 2.42995297e-01 \
+    2.74541605e-01 3.10183341e-01 3.50452182e-01 3.95948834e-01 4.47351985e-01 \
+    5.05428432e-01 5.71044521e-01 6.45179068e-01 7.28937963e-01 8.23570664e-01 \
+    9.3048884e-01 1.05128742e+00 1.18776840e+00 1.34196772e+00 1.51618560e+00 \
+    1.71302093e+00 1.93540994e+00 2.18667011e+00 2.47054955e+00 2.79128298e+00 \
+    3.15365491e+00 3.56307093e+00 4.02563845e+00 4.54825775e+00 5.13872489e+00 \
+    5.80584808e+00 6.55957901e+00 7.41116134e+00 8.37329839e+00 9.46034267e+00 \
+    1.068851e+01 1.20761213e+01 1.36438761e+01 1.54151611e+01 1.74163991e+01 \
+    1.96774432e+01 2.22320222e+01 2.51182436e+01 2.83791620e+01 3.20634217e+01 \
+    3.62259820e+01 4.09289372e+01 4.62424427e+01 5.22457619e+01 5.90284483e+01 \
+    6.66916814e+01 7.53497762e+01 8.51318884e+01 9.61839408e+01 1.08670801e+02 \
+    1.22778738e+02 1.38718207e+02 1.56726981e+02 1.77073702e+02 2.0006189e+02 \
+    2.26034466e+02 2.55378873e+02 2.88532851e+02 3.25990967e+02 3.68311998e+02 \
+    4.1612726e+02 4.70150028e+02 5.31186179e+02 6.00146208e+02 6.78058815e+02 \
+    7.66086248e+02 8.65541640e+02 9.77908601e+02 1.10486335e+03 1.2482997e+03 \
+    1.41035735e+03 1.59345376e+03 1.80032025e+03 2.03404270e+03 2.29810764e+03
+    1.
+    15.
+#  BOUNDS
+#    0.1 0.
+#    20.d3 300.
   /
 END
 
@@ -244,7 +268,7 @@ END
 #=========================== regions ==========================================
 REGION all
   COORDINATES
-    0.d0 0.d0 0.d0
+    0.1d0 0.d0 0.d0
     20.d3 1.d0 300.0
   /
 END
@@ -252,7 +276,7 @@ END
 REGION bottom
   FACE bottom
   COORDINATES
-    0.d0 0.d0 0.d0
+    0.1d0 0.d0 0.d0
     20.d3 1.d0 0.d0
   /
 END
@@ -260,7 +284,7 @@ END
 REGION top
   FACE top
   COORDINATES
-    0.d0 0.d0 300.0
+    0.1d0 0.d0 300.0
     20.d3 1.d0 300.0
   /
 END
@@ -274,9 +298,10 @@ REGION outer
 END
 
 REGION feedzone
+  FACE west
   COORDINATES
-    0.0 0.0 100.0
-    1.0 1.0 200.0
+    0.1 0.0 100.0
+    0.1 1.0 200.0
   /
 END
 
@@ -287,7 +312,7 @@ FLOW_CONDITION initial_pressure
     TEMPERATURE DIRICHLET
   /
   DATUM 0. 0. 0.
-  LIQUID_PRESSURE 7.5d6
+  LIQUID_PRESSURE 1.d7
   TEMPERATURE 150.
 END
  
@@ -297,17 +322,26 @@ FLOW_CONDITION outer_pressure
     #ENERGY_FLUX NEUMANN
     TEMPERATURE DIRICHLET
   /
-  LIQUID_PRESSURE 7.5d6
+  LIQUID_PRESSURE 1.d7 Pa
   #ENERGY_FLUX 0.0 W/m^2
   TEMPERATURE 150.
 END
- 
-FLOW_CONDITION well_flux
+
+FLOW_CONDITION well_pressure
   TYPE
-    RATE scaled_volumetric_rate PERM
+    LIQUID_PRESSURE DIRICHLET
     TEMPERATURE DIRICHLET
   /
-  RATE 1e5 m^3/d
+  LIQUID_PRESSURE 1.5d7
+  TEMPERATURE 150.
+END
+
+FLOW_CONDITION well_flux
+  TYPE
+    RATE scaled_mass_rate PERM
+    TEMPERATURE DIRICHLET
+  /
+  RATE 1. kg/sec
   TEMPERATURE 150. 
 END
 #=========================== transport conditions =============================
@@ -340,7 +374,7 @@ CONSTRAINT initial_constraint
     Mg++         8.255675e-7      T
     Al+++        5.949386e-5      T
     Na+          0.031377         T
-    CO2(aq)      0.01             T
+    CO2(aq)      0.1e-3             T
  
     Tracer          1.d-30        T
   /
@@ -368,7 +402,7 @@ CONSTRAINT inlet_constraint_1
     Mg++         8.255675e-7      T
     Al+++        5.949386e-5      T
     Na+          0.031377         T
-    CO2(aq)      0.01             T
+    CO2(aq)      0.1e-3             T
  
     Tracer          1.d-10        T
   /
@@ -387,13 +421,19 @@ BOUNDARY_CONDITION outlet
   TRANSPORT_CONDITION background_conc
   REGION outer
 END
- 
-SOURCE_SINK inlet
-  FLOW_CONDITION well_flux
-  #FLOW_CONDITION inlet_pressure
+
+BOUNDARY_CONDITION inlet
+  FLOW_CONDITION well_pressure
   TRANSPORT_CONDITION inlet_conc
   REGION feedzone
 END
+
+#SOURCE_SINK inlet
+#  FLOW_CONDITION well_flux
+#  #FLOW_CONDITION inlet_pressure
+#  TRANSPORT_CONDITION inlet_conc
+#  REGION feedzone
+#END
 
 #=========================== stratigraphy couplers ============================
 STRATA
