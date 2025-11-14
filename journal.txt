@@ -245,3 +245,6 @@ injection pressure = 1.5e7 Pa (=150 bar)
 Working on porosity field generation, have switched reservoir.in to use a pressure boundary condition from an x-origin of 0.1 m to represent the feedzone.
 Seems to still give sensible results
 
+--- 15/11/25 ---
+
+After discussions at NZGW, reinjection model seems to be acceptable. One key outstanding issue is that reservoir temp should be higher than 150 - need a non-isothermal model.

@@ -273,7 +273,7 @@ REGION all
   /
 END
 
-REGION bottom
+REGION base
   FACE bottom
   COORDINATES
     0.1d0 0.d0 0.d0
@@ -281,7 +281,7 @@ REGION bottom
   /
 END
  
-REGION top
+REGION cap
   FACE top
   COORDINATES
     0.1d0 0.d0 300.0
@@ -313,7 +313,7 @@ FLOW_CONDITION initial_pressure
   /
   DATUM 0. 0. 0.
   LIQUID_PRESSURE 1.d7
-  TEMPERATURE 150.
+  TEMPERATURE 250.
 END
  
 FLOW_CONDITION outer_pressure
@@ -324,7 +324,25 @@ FLOW_CONDITION outer_pressure
   /
   LIQUID_PRESSURE 1.d7 Pa
   #ENERGY_FLUX 0.0 W/m^2
-  TEMPERATURE 150.
+  TEMPERATURE 250.
+END
+
+FLOW_CONDITION base_temp
+  TYPE
+    LIQUID_FLUX NEUMANN
+    TEMPERATURE DIRICHLET
+  /
+  LIQUID_FLUX 0.
+  TEMPERATURE 250.
+END
+
+FLOW_CONDITION cap_temp
+  TYPE
+    LIQUID_FLUX NEUMANN
+    TEMPERATURE DIRICHLET
+  /
+  LIQUID_FLUX 0.
+  TEMPERATURE 200.
 END
 
 FLOW_CONDITION well_pressure
@@ -374,7 +392,7 @@ CONSTRAINT initial_constraint
     Mg++         8.255675e-7      T
     Al+++        5.949386e-5      T
     Na+          0.031377         T
-    CO2(aq)      0.1e-3             T
+    CO2(aq)      0.1             T
  
     Tracer          1.d-30        T
   /
@@ -402,7 +420,7 @@ CONSTRAINT inlet_constraint_1
     Mg++         8.255675e-7      T
     Al+++        5.949386e-5      T
     Na+          0.031377         T
-    CO2(aq)      0.1e-3             T
+    CO2(aq)      0.1             T
  
     Tracer          1.d-10        T
   /
@@ -426,6 +444,18 @@ BOUNDARY_CONDITION inlet
   FLOW_CONDITION well_pressure
   TRANSPORT_CONDITION inlet_conc
   REGION feedzone
+END
+
+BOUNDARY_CONDITION base
+  FLOW_CONDITION base_temp
+  TRANSPORT_CONDITION background_conc
+  REGION base
+END
+
+BOUNDARY_CONDITION cap
+  FLOW_CONDITION cap_temp
+  TRANSPORT_CONDITION background_conc
+  REGION cap
 END
 
 #SOURCE_SINK inlet
