@@ -1,0 +1,475 @@
+SIMULATION
+  SIMULATION_TYPE SUBSURFACE
+  PROCESS_MODELS
+    SUBSURFACE_FLOW flow
+      MODE TH
+    /
+    SUBSURFACE_TRANSPORT transport
+      MODE GIRT
+    /
+  /
+END
+
+SUBSURFACE
+
+#=========================== numerical methods ================================
+NUMERICAL_METHODS FLOW
+  LINEAR_SOLVER
+    SOLVER ITERATIVE
+  /
+END
+ 
+NUMERICAL_METHODS TRANSPORT
+  LINEAR_SOLVER
+    SOLVER ITERATIVE
+  /
+END
+ 
+#=========================== discretization ===================================
+GRID
+  TYPE STRUCTURED CYLINDRICAL
+  NXYZ 100 1 20
+  ORIGIN 0.1 0. 0.
+  DXYZ
+    1.2982271e-02 1.46676646e-02 1.65718605e-02 1.87232644e-02 2.11539693e-02 \
+    2.39002349e-02 2.70030282e-02 3.05086345e-02 3.44693481e-02 3.89442523e-02 \
+    4.40001006e-02 4.97123129e-02 5.61661001e-02 6.34577354e-02 7.16959906e-02 \
+    8.10037583e-02 9.15198858e-02 1.03401245e-01 1.16825075e-01 1.31991623e-01 \
+    1.49127133e-01 1.68487222e-01 1.90360689e-01 2.15073830e-01 2.42995297e-01 \
+    2.74541605e-01 3.10183341e-01 3.50452182e-01 3.95948834e-01 4.47351985e-01 \
+    5.05428432e-01 5.71044521e-01 6.45179068e-01 7.28937963e-01 8.23570664e-01 \
+    9.3048884e-01 1.05128742e+00 1.18776840e+00 1.34196772e+00 1.51618560e+00 \
+    1.71302093e+00 1.93540994e+00 2.18667011e+00 2.47054955e+00 2.79128298e+00 \
+    3.15365491e+00 3.56307093e+00 4.02563845e+00 4.54825775e+00 5.13872489e+00 \
+    5.80584808e+00 6.55957901e+00 7.41116134e+00 8.37329839e+00 9.46034267e+00 \
+    1.068851e+01 1.20761213e+01 1.36438761e+01 1.54151611e+01 1.74163991e+01 \
+    1.96774432e+01 2.22320222e+01 2.51182436e+01 2.83791620e+01 3.20634217e+01 \
+    3.62259820e+01 4.09289372e+01 4.62424427e+01 5.22457619e+01 5.90284483e+01 \
+    6.66916814e+01 7.53497762e+01 8.51318884e+01 9.61839408e+01 1.08670801e+02 \
+    1.22778738e+02 1.38718207e+02 1.56726981e+02 1.77073702e+02 2.0006189e+02 \
+    2.26034466e+02 2.55378873e+02 2.88532851e+02 3.25990967e+02 3.68311998e+02 \
+    4.1612726e+02 4.70150028e+02 5.31186179e+02 6.00146208e+02 6.78058815e+02 \
+    7.66086248e+02 8.65541640e+02 9.77908601e+02 1.10486335e+03 1.2482997e+03 \
+    1.41035735e+03 1.59345376e+03 1.80032025e+03 2.03404270e+03 2.29810764e+03 
+    1.
+    15.
+#  BOUNDS
+#    0.1 0.
+#    20.d3 300.
+  /
+END
+
+#=========================== chemistry ========================================
+CHEMISTRY
+  #LOG_FORMULATION
+  TRUNCATE_CONCENTRATION 1e-30
+  UPDATE_POROSITY
+  UPDATE_PERMEABILITY
+  PRIMARY_SPECIES
+    H+
+    SiO2(aq)
+    Al+++
+    Ca++
+    Cl-
+    CO2(aq)
+    Na+
+    K+
+    Mg++
+    Fe++
+    SO4--
+    Tracer
+  /
+  
+  SECONDARY_SPECIES
+    Al(OH)2+
+    Al(OH)4-
+    Al(OH)3(aq)
+    AlOH++
+    HCO3-
+    CO3--
+    CaCO3(aq)
+    CaCl+
+    CaCl2(aq)
+    CaHCO3+
+    CaSO4(aq)
+    H2SiO4--
+    H3SiO4-
+    MgCO3(aq)
+    MgHCO3+
+    NaCO3-
+    OH-
+  /
+  
+  ACTIVE_GAS_SPECIES
+    GAS_TRANSPORT_IS_UNVETTED
+    CO2(g)
+  /
+  
+  MINERALS
+    Calcite
+    Calcite_is
+    SiO2(am)
+    Quartz
+    Kaolinite
+  /
+  
+  MINERAL_KINETICS
+  
+    Kaolinite
+      SURFACE_AREA_FUNCTION CONSTANT
+      PREFACTOR
+        RATE_CONSTANT -11.31 mol/m^2-sec     
+        ACTIVATION_ENERGY 65.9
+        PREFACTOR_SPECIES H+
+          ALPHA 0.777                        
+        /
+      /
+      PREFACTOR
+        RATE_CONSTANT -13.18 mol/m^2-sec    
+        ACTIVATION_ENERGY 22.2
+      /
+      PREFACTOR
+        RATE_CONSTANT -17.05 mol/m^2-sec
+        ACTIVATION_ENERGY 17.9
+        PREFACTOR_SPECIES H+
+          ALPHA -0.472
+        /
+      /
+    /
+    
+    Quartz
+      SURFACE_AREA_FUNCTION CONSTANT
+      RATE_CONSTANT 0.0
+    /
+    
+    Calcite
+      SURFACE_AREA_FUNCTION VOLUME_FRACTION_RATIO
+      SURFACE_AREA_VOL_FRAC_POWER 0.199701
+      PREFACTOR
+        RATE_CONSTANT -0.30 mol/m^2-sec
+        ACTIVATION_ENERGY 14.4
+        PREFACTOR_SPECIES H+
+          ALPHA 1
+        /
+      /
+      PREFACTOR
+        RATE_CONSTANT -5.81 mol/m^2-sec     
+        ACTIVATION_ENERGY 23.5
+      /
+    /
+    
+    Calcite_is
+      SURFACE_AREA_FUNCTION VOLUME_FRACTION_RATIO
+      SURFACE_AREA_VOL_FRAC_POWER 3.5
+      PREFACTOR
+        RATE_CONSTANT -0.30 mol/m^2-sec     
+        ACTIVATION_ENERGY 14.4
+        PREFACTOR_SPECIES H+
+          ALPHA 1
+        /
+      /
+      PREFACTOR
+        RATE_CONSTANT -5.81 mol/m^2-sec
+        ACTIVATION_ENERGY 23.5
+      /     
+    /
+
+    SiO2(am)
+      SURFACE_AREA_FUNCTION CONSTANT
+      PREFACTOR
+        RATE_CONSTANT -12.5 mol/m^2-sec
+        ACTIVATION_ENERGY 74.5
+        PREFACTOR_SPECIES H+
+          ALPHA -0.51632703098                           
+        /
+      /
+    /  
+  /
+  
+  DATABASE ../hanford.dat
+  #LOG_FORMULATION
+  MOLAL
+#  OPERATOR_SPLITTING
+  ACTIVITY_COEFFICIENTS TIMESTEP
+  OUTPUT
+    PH
+    H2SiO4--
+    H3SiO4-
+    CO2(g)
+    HCO3-
+    TOTAL
+    ALL
+    MINERAL_SURFACE_AREA
+  /
+END
+ 
+#=========================== fluid properties =================================
+FLUID_PROPERTY
+  DIFFUSION_COEFFICIENT 1.d-9
+END
+ 
+#=========================== material properties ==============================
+MATERIAL_PROPERTY soil1
+  ID 1
+  POROSITY 0.050d0
+  TORTUOSITY 20
+  PERMEABILITY
+    PERM_X 1.d-12
+    PERM_Y 1.d-12
+    PERM_Z 1.d-13
+  /
+  THERMAL_CONDUCTIVITY_DRY 1.2d0 # not used
+  THERMAL_CONDUCTIVITY_WET 1.2d0
+  HEAT_CAPACITY 830.
+  CHARACTERISTIC_CURVES matrix
+  PERMEABILITY_CRITICAL_POROSITY 0.001
+  PERMEABILITY_POWER 2.5
+  PERMEABILITY_MIN_SCALE_FACTOR 1e-12
+  ROCK_DENSITY 3e3
+END
+ 
+#=========================== characteristic curves ============================
+CHARACTERISTIC_CURVES default
+  DEFAULT
+END
+ 
+CHARACTERISTIC_CURVES matrix
+  SATURATION_FUNCTION VAN_GENUCHTEN
+    M 0.66d0
+    ALPHA  1.02d-5
+    LIQUID_RESIDUAL_SATURATION 0.1
+  /
+  PERMEABILITY_FUNCTION MUALEM_VG_LIQ
+    M 0.66d0
+    LIQUID_RESIDUAL_SATURATION 0.1
+  /
+/
+ 
+#=========================== output options ===================================
+OUTPUT
+  PERIODIC TIME 100 h
+  FORMAT VTK
+  VARIABLES
+     POROSITY
+     PERMEABILITY
+     LIQUID_PRESSURE
+     TEMPERATURE
+  END
+  VELOCITY_AT_CENTER
+END
+ 
+#=========================== times ============================================
+TIME
+  FINAL_TIME 5.d0 y
+  INITIAL_TIMESTEP_SIZE 1 h
+  MAXIMUM_TIMESTEP_SIZE 100 h
+END
+ 
+#=========================== regions ==========================================
+REGION all
+  COORDINATES
+    0.1d0 0.d0 0.d0
+    20.d3 1.d0 300.0
+  /
+END
+
+REGION base
+  FACE bottom
+  COORDINATES
+    0.1d0 0.d0 0.d0
+    20.d3 1.d0 0.d0
+  /
+END
+ 
+REGION cap
+  FACE top
+  COORDINATES
+    0.1d0 0.d0 300.0
+    20.d3 1.d0 300.0
+  /
+END
+
+REGION outer
+  FACE east
+  COORDINATES
+    20.d3 0.0 0.0
+    20.d3 1.0 300.0
+  /
+END
+
+REGION feedzone
+  FACE west
+  COORDINATES
+    0.1 0.0 100.0
+    0.1 1.0 200.0
+  /
+END
+
+#=========================== flow conditions ==================================
+FLOW_CONDITION initial_pressure
+  TYPE
+    LIQUID_PRESSURE hydrostatic
+    TEMPERATURE DIRICHLET
+  /
+  DATUM 0. 0. 0.
+  LIQUID_PRESSURE 1.d7
+  TEMPERATURE 250.
+END
+ 
+FLOW_CONDITION outer_pressure
+  TYPE
+    LIQUID_PRESSURE DIRICHLET
+    #ENERGY_FLUX NEUMANN
+    TEMPERATURE DIRICHLET
+  /
+  LIQUID_PRESSURE 1.d7 Pa
+  #ENERGY_FLUX 0.0 W/m^2
+  TEMPERATURE 250.
+END
+
+FLOW_CONDITION base_temp
+  TYPE
+    LIQUID_FLUX NEUMANN
+    TEMPERATURE DIRICHLET
+  /
+  LIQUID_FLUX 0.
+  TEMPERATURE 250.
+END
+
+FLOW_CONDITION cap_temp
+  TYPE
+    LIQUID_FLUX NEUMANN
+    TEMPERATURE DIRICHLET
+  /
+  LIQUID_FLUX 0.
+  TEMPERATURE 200.
+END
+
+FLOW_CONDITION well_pressure
+  TYPE
+    LIQUID_PRESSURE DIRICHLET
+    TEMPERATURE DIRICHLET
+  /
+  LIQUID_PRESSURE 1.5d7
+  TEMPERATURE 150.
+END
+
+FLOW_CONDITION well_flux
+  TYPE
+    RATE scaled_mass_rate PERM
+    TEMPERATURE DIRICHLET
+  /
+  RATE 1. kg/sec
+  TEMPERATURE 150. 
+END
+#=========================== transport conditions =============================
+TRANSPORT_CONDITION background_conc
+  TYPE ZERO_GRADIENT
+  CONSTRAINT_LIST
+    0.d0 initial_constraint
+  /
+END
+ 
+TRANSPORT_CONDITION inlet_conc
+  TYPE DIRICHLET_ZERO_GRADIENT
+  TIME_UNITS d
+  CONSTRAINT_LIST
+    0.d0 inlet_constraint_1
+  /
+END
+ 
+#=========================== constraints ======================================
+CONSTRAINT initial_constraint
+  CONCENTRATIONS
+    H+              4.72          P
+ 
+    Cl-          0.026398         Z
+    SO4--        0.004397         T
+    SiO2(aq)     0.014            T
+    Ca++         7.008879e-5      T
+    Fe++         1.257524e-6      T
+    K+           0.002668         T
+    Mg++         8.255675e-7      T
+    Al+++        5.949386e-5      T
+    Na+          0.031377         T
+    CO2(aq)      0.1             T
+ 
+    Tracer          1.d-30        T
+  /
+  MINERALS
+ 
+    Calcite         0.01   0.584059 cm^2/cm^3
+    Calcite_is      0.00226853  0.145844 cm^2/cm^3
+    SiO2(am)        0.0  7.12172e+03 cm^2/cm^3
+    Quartz          0.93  1.0  cm^2/cm^3
+    Kaolinite       0.0  7.73840e-03 cm^2/cm^3
+ 
+  /
+END
+ 
+CONSTRAINT inlet_constraint_1
+  CONCENTRATIONS 
+    H+              4.72          P
+ 
+    Cl-          0.026398         Z
+    SO4--        0.004397         T
+    SiO2(aq)     0.014            T
+    Ca++         7.008879e-5      T
+    Fe++         1.257524e-6      T
+    K+           0.002668         T
+    Mg++         8.255675e-7      T
+    Al+++        5.949386e-5      T
+    Na+          0.031377         T
+    CO2(aq)      0.1             T
+ 
+    Tracer          1.d-10        T
+  /
+END
+ 
+#=========================== condition couplers ===============================
+
+INITIAL_CONDITION
+  FLOW_CONDITION initial_pressure
+  TRANSPORT_CONDITION background_conc
+  REGION all
+END
+ 
+BOUNDARY_CONDITION outlet
+  FLOW_CONDITION initial_pressure
+  TRANSPORT_CONDITION background_conc
+  REGION outer
+END
+
+BOUNDARY_CONDITION inlet
+  FLOW_CONDITION well_pressure
+  TRANSPORT_CONDITION inlet_conc
+  REGION feedzone
+END
+
+BOUNDARY_CONDITION base
+  FLOW_CONDITION base_temp
+  TRANSPORT_CONDITION background_conc
+  REGION base
+END
+
+BOUNDARY_CONDITION cap
+  FLOW_CONDITION cap_temp
+  TRANSPORT_CONDITION background_conc
+  REGION cap
+END
+
+#SOURCE_SINK inlet
+#  FLOW_CONDITION well_flux
+#  #FLOW_CONDITION inlet_pressure
+#  TRANSPORT_CONDITION inlet_conc
+#  REGION feedzone
+#END
+
+#=========================== stratigraphy couplers ============================
+STRATA
+  REGION all
+  MATERIAL soil1
+END
+ 
+END_SUBSURFACE
+ 

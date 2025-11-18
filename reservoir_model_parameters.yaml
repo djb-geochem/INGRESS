@@ -1,9 +1,11 @@
 
-len_x: 100 #metres
-len_z: 100 #metres
+len_x: 20000 #metres
+len_z: 300 #metres
 
 nx: 100
 nz: 100
 
 avg_phi:  0.05
 avg_calc: 0.01
+
+
