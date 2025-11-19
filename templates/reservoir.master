@@ -28,15 +28,12 @@ END
 #=========================== discretization ===================================
 GRID
   TYPE STRUCTURED CYLINDRICAL
-  NXYZ 100 1 20
+  NXYZ {{ nx }} 1 {{ nz }}
   ORIGIN 0.1 0. 0.
   DXYZ
 {{ formatted_grid }}
     1.
-    15.
-#  BOUNDS
-#    0.1 0.
-#    20.d3 300.
+    {{ len_z / nz }}
   /
 END
 
@@ -193,7 +190,7 @@ END
 MATERIAL_PROPERTY soil1
   ID 1
   POROSITY 0.050d0
-  TORTUOSITY 20
+  TORTUOSITY_FUNCTION_OF_POROSITY 1.
   PERMEABILITY
     PERM_X 1.d-12
     PERM_Y 1.d-12

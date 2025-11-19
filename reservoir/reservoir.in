@@ -52,10 +52,7 @@ GRID
     7.66086248e+02 8.65541640e+02 9.77908601e+02 1.10486335e+03 1.2482997e+03 \
     1.41035735e+03 1.59345376e+03 1.80032025e+03 2.03404270e+03 2.29810764e+03 
     1.
-    15.
-#  BOUNDS
-#    0.1 0.
-#    20.d3 300.
+    15.0
   /
 END
 
@@ -211,8 +208,8 @@ END
 #=========================== material properties ==============================
 MATERIAL_PROPERTY soil1
   ID 1
-  POROSITY 0.050d0
-  TORTUOSITY 20
+  POROSITY DATASET por
+  TORTUOSITY_FUNCTION_OF_POROSITY 1.
   PERMEABILITY
     PERM_X 1.d-12
     PERM_Y 1.d-12
@@ -464,6 +461,12 @@ END
 #  TRANSPORT_CONDITION inlet_conc
 #  REGION feedzone
 #END
+#=========================== datasets ============================
+
+DATASET por
+  FILENAME Porosity.h5
+  HDF5_DATASET_NAME Porosity
+END
 
 #=========================== stratigraphy couplers ============================
 STRATA

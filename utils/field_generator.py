@@ -9,6 +9,7 @@ import sys
 import numpy as np
 import gstools as gs
 import matplotlib.pyplot as plt
+import h5py
 
 def variogram(nx, nz, var=0.1, len_scale=1e3, anis=1e-2):
     
@@ -18,7 +19,7 @@ def variogram(nx, nz, var=0.1, len_scale=1e3, anis=1e-2):
     x = range(nx)
     z = range(nz)
     
-    field = gs.SRF(model)#, seed=19921026)
+    field = gs.SRF(model, seed=19921026)
     
     Y = field((x, z), mesh_type="structured")
     
@@ -36,7 +37,7 @@ def calcite_field(Y, avg_calc=0.02, alpha=0.0005, len_scale_noise=200, anis=1e-2
     
     # small-scale correlated "noise"
     model_noise = gs.Exponential(dim=2, var=0.0001, len_scale=len_scale_noise, anis=anis)
-    field_noise = gs.SRF(model_noise)
+    field_noise = gs.SRF(model_noise, seed=19921026)
     
     nx, nz = Y.shape
     x = range(nx)
@@ -45,6 +46,26 @@ def calcite_field(Y, avg_calc=0.02, alpha=0.0005, len_scale_noise=200, anis=1e-2
     
     calc = base + noise_field
     return np.clip(calc, 0, None)  # no negative calcite
+
+def write_h5_file(variable, array):
+    
+    filename = f"{variable}.h5"
+    h5file = h5py.File(filename, mode='w')
+    
+    n = np.size(array)
+    # create integer array for cell ids
+    iarray = np.arange(n,dtype='i4')
+    # convert to 1-based
+    iarray[:] += 1
+    dataset_name = 'Cell Ids'
+    h5dset = h5file.create_dataset(dataset_name, data=iarray)
+    
+    # create double array for porosities
+    dataset_name = variable
+    h5dset = h5file.create_dataset(dataset_name, data=array.flatten(), dtype='float64')
+    
+    h5file.close()
+        
 
 def main(nx, nz):
     
@@ -67,7 +88,9 @@ if __name__ == "__main__":
     
     main(nx, nz)
 #%%
-phi, calc = main(200, 100)
+phi, calc = main(100, 20)
+
+write_h5_file("Porosity", phi)
 
 fig = plt.figure()
 

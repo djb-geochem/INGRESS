@@ -254,3 +254,10 @@ Set base temp to 250 and cap temp to 200. Seems to be working.
 --- 18/11/25 ---
 
 Setting up template writing scripts for reservoir.
+
+--- 19/11/25 ---
+
+Set up script to generate porosity field and write to .h5 file using h5py.
+Appears not to work as intended right now because the initial porosity gets overwritten at t=0.
+UPDATE_POROSITY calculates initial phi as a function of mineral volume fractions.
+I think I can alter the approach simply by providing a qtz_VF.h5 file or similar.
