@@ -189,7 +189,7 @@ END
 #=========================== material properties ==============================
 MATERIAL_PROPERTY soil1
   ID 1
-  POROSITY 0.050d0
+  POROSITY DATASET por
   TORTUOSITY_FUNCTION_OF_POROSITY 1.
   PERMEABILITY
     PERM_X 1.d-12
@@ -239,7 +239,7 @@ END
 #=========================== times ============================================
 TIME
   FINAL_TIME 5.d0 y
-  INITIAL_TIMESTEP_SIZE 1 h
+  INITIAL_TIMESTEP_SIZE 0.1 h
   MAXIMUM_TIMESTEP_SIZE 100 h
 END
  
@@ -376,10 +376,10 @@ CONSTRAINT initial_constraint
   /
   MINERALS
  
-    Calcite         0.01   0.584059 cm^2/cm^3
+    Calcite         DATASET calc 0.584059 cm^2/cm^3
     Calcite_is      0.00226853  0.145844 cm^2/cm^3
     SiO2(am)        0.0  7.12172e+03 cm^2/cm^3
-    Quartz          0.93  1.0  cm^2/cm^3
+    Quartz          DATASET qtz  1.0  cm^2/cm^3
     Kaolinite       0.0  7.73840e-03 cm^2/cm^3
  
   /
@@ -442,6 +442,23 @@ END
 #  TRANSPORT_CONDITION inlet_conc
 #  REGION feedzone
 #END
+
+#=========================== datasets ============================
+
+DATASET por
+  FILENAME reservoir.h5
+  HDF5_DATASET_NAME Porosity
+END
+
+DATASET qtz
+  FILENAME reservoir.h5
+  HDF5_DATASET_NAME Quartz_VF
+END
+
+DATASET calc
+  FILENAME reservoir.h5
+  HDF5_DATASET_NAME Calcite_VF
+END
 
 #=========================== stratigraphy couplers ============================
 STRATA

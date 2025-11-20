@@ -1,6 +1,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import re
+
+def fix_fortran_float(s):
+    """
+    Convert Fortran-like numbers such as 3.101497-319 → 3.101497E-319
+    """
+    # Match patterns without 'E' but with a trailing exponent
+    if re.match(r'^[+-]?\d*\.\d+[+-]\d+$', s):
+        # Insert E before the final sign
+        return float(re.sub(r'([0-9])([+-]\d+)$', r'\1E\2', s))
+    return float(s)
 
 def read_vtk_scalar(filename, scalar_name, shape=(100,20)):
     data = []
@@ -17,7 +28,7 @@ def read_vtk_scalar(filename, scalar_name, shape=(100,20)):
                 elif line.strip() == "" or line.startswith("SCALARS"):
                     break
                 else:
-                    numbers = [float(x) for x in line.split()]
+                    numbers = [fix_fortran_float(x) for x in line.split()]
                     data.extend(numbers)
 
     if not data:

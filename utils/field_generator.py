@@ -31,7 +31,7 @@ def porosity_field(Y, avg_phi=0.05):
     
     return np.clip(phi, 0.001, 0.2)
 
-def calcite_field(Y, avg_calc=0.02, alpha=0.0005, len_scale_noise=200, anis=1e-2):
+def calcite_field(Y, avg_calc=0.01, alpha=0.0005, len_scale_noise=200, anis=1e-2):
     # large-scale relation to Y (e.g. inverse correlation)
     base = avg_calc + alpha * (-Y)
     
@@ -47,36 +47,61 @@ def calcite_field(Y, avg_calc=0.02, alpha=0.0005, len_scale_noise=200, anis=1e-2
     calc = base + noise_field
     return np.clip(calc, 0, None)  # no negative calcite
 
-def write_h5_file(variable, array):
+def create_h5_file(nx, nz):
     
-    filename = f"{variable}.h5"
+    #create reservoir.h5 file with index Cell ID array
+    
+    filename = "reservoir/reservoir.h5"
     h5file = h5py.File(filename, mode='w')
     
-    n = np.size(array)
-    # create integer array for cell ids
-    iarray = np.arange(n,dtype='i4')
+    n = nx * nz
+    
+    iarray = np.arange(n, dtype='i4')
     # convert to 1-based
     iarray[:] += 1
-    dataset_name = 'Cell Ids'
-    h5dset = h5file.create_dataset(dataset_name, data=iarray)
+    h5file.create_dataset("Cell Ids", data=iarray)
     
-    # create double array for porosities
-    dataset_name = variable
-    h5dset = h5file.create_dataset(dataset_name, data=array.flatten(), dtype='float64')
-    
-    h5file.close()
-        
+    return h5file
 
-def main(nx, nz):
+def add_h5_dataset(file, name, array):
+    
+    array = array.transpose()
+    
+    file.create_dataset(name, data=array.flatten(), dtype='float64')
+
+def plot_initial_distribution(nx, nz, name, array):
+    
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    
+    ax.imshow(array.transpose()[::-1, :])
+    
+    fig.savefig(f"reservoir/figures/{name}_initial.png", dpi=100)
+
+def write_reservoir_dataset(nx, nz, avg_phi=0.05, avg_calc=0.01,
+                            calc_is=0.00226853):
     
     vgm = variogram(nx, nz)
+    phi = porosity_field(vgm, avg_phi=avg_phi)   
+    calc = calcite_field(vgm, avg_calc=avg_calc)
+      
+    qtz = 1 - phi - calc - calc_is
     
-    phi = porosity_field(vgm)
+    reservoir_file = create_h5_file(nx, nz)
     
-    calc = calcite_field(vgm)
+    datasets = [phi, calc, qtz]
     
-    return phi.transpose(), calc.transpose()
+    names = ["Porosity", "Calcite_VF", "Quartz_VF"]
+    
+    for dataset, name in zip(datasets, names):
+        
+        plot_initial_distribution(nx, nz, name, dataset)
+        add_h5_dataset(reservoir_file, name, dataset)
+    
+    reservoir_file.close()
 
+
+"""
 #%%
 if __name__ == "__main__":
     
@@ -107,5 +132,5 @@ ax2.imshow(calc)
 plt.hist(phi.flatten(), bins=50)    
 
 plt.show()
-    
+"""
     

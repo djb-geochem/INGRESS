@@ -261,3 +261,11 @@ Set up script to generate porosity field and write to .h5 file using h5py.
 Appears not to work as intended right now because the initial porosity gets overwritten at t=0.
 UPDATE_POROSITY calculates initial phi as a function of mineral volume fractions.
 I think I can alter the approach simply by providing a qtz_VF.h5 file or similar.
+
+--- 20/11/25 ---
+
+Fully implemented generation of synthetic heterogeneous porosity and calcite in build_reservoir_model.py
+
+Ran some tests scaling up resolution on the laptop.
+Appears to be some issues with convergence once cell count gets >10,000
+Timestep becomes prohibitively small, particularly at model start and when permeability drops close to zero.

@@ -16,7 +16,9 @@ sys.path.insert(0, str(PROJECT_ROOT))
 os.chdir(PROJECT_ROOT)
 
 from utils.grid_generator import generate_grid, format_grid
+from utils.field_generator import write_reservoir_dataset
 from utils import load_yaml
+
 
 if __name__ == "__main__":
     
@@ -26,7 +28,9 @@ if __name__ == "__main__":
                                      res_params["len_x"])
     
     res_params["formatted_grid"] = format_grid(res_params["dx"])
-    print(res_params["formatted_grid"])
+    
+    #write reservoir_dataset
+    write_reservoir_dataset(res_params["nx"], res_params["nz"])
     
     #load template
     template_dir = PROJECT_ROOT / "templates"
