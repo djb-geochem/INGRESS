@@ -271,3 +271,9 @@ Ran some tests scaling up resolution on the laptop.
 Appears to be some issues with convergence once cell count gets >10,000
 Timestep becomes prohibitively small, particularly at model start and when permeability drops close to zero.
 Could be that cell size gets very small near injection point?
+
+--- 21/11/25 ---
+
+Put reservoir model workflow into res_workflow.py, combining build_reservoir_model and plot_vtk_heatmap.
+
+

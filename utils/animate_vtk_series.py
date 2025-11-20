@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import re
+import sys
+from pathlib import Path
 
 def fix_fortran_float(s):
     """
@@ -12,6 +14,13 @@ def fix_fortran_float(s):
         # Insert E before the final sign
         return float(re.sub(r'([0-9])([+-]\d+)$', r'\1E\2', s))
     return float(s)
+
+def highest_vtk_index(path=".", expt="reservoir"):
+    p = Path(path)
+    return max(
+        int(f.stem.split("-")[2])
+        for f in p.glob(f"{expt}-vel-*.vtk")
+        )
 
 def find_resolution(expt):
     
@@ -50,11 +59,14 @@ def read_vtk_scalar(filename, scalar_name, nx, nz):
     return np.array(data).reshape(shape)
 
 
-def animate_vtk_series(scalar_name, expt="reservoir", nfiles=400):
+def animate_vtk_series(scalar_name, expt="reservoir", nfiles=0):
     """
     Loads scalar arrays from multiple vtk files and animates them.
     Saves to MP4 using ffmpeg.
     """
+    
+    if not nfiles:
+        nfiles = highest_vtk_index(expt=expt)
     
     nx, nz = find_resolution(expt)
     
@@ -100,8 +112,10 @@ def animate_vtk_series(scalar_name, expt="reservoir", nfiles=400):
     return outfile
 
 velocities = ["Vlx", "Vlz"]
+
+#%%
 # Example usage:
-    
+"""
 expt_list = ["reservoir"]
 
 variable_list = ["Liquid_Pressure", "Calcite_VF", "SiO2(am)_VF", "pH",
@@ -110,3 +124,4 @@ variable_list = ["Liquid_Pressure", "Calcite_VF", "SiO2(am)_VF", "pH",
 
 for var in variable_list:
     animate_vtk_series(var)
+"""

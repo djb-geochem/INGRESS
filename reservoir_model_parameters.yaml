@@ -2,10 +2,19 @@
 len_x: 20000 #metres
 len_z: 300 #metres
 
-nx: 200
-nz: 40
+nx: 100
+nz: 20
 
 avg_phi:  0.05
 avg_calc: 0.01
 
-
+plot:
+  - Porosity
+  - Permeability
+  - Total_Tracer
+  - pH
+  - SiO2(am)_VF
+  - Calcite_VF
+  - Liquid_Pressure
+  - Vlx
+  - Vlz
