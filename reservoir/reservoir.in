@@ -395,8 +395,8 @@ CONSTRAINT initial_constraint
   /
   MINERALS
  
-    Calcite         DATASET calc 0.584059 cm^2/cm^3
-    Calcite_is      0.00226853  0.145844 cm^2/cm^3
+    Calcite         0.0 0.584059 cm^2/cm^3
+    Calcite_is      0.0  0.145844 cm^2/cm^3
     SiO2(am)        0.0  7.12172e+03 cm^2/cm^3
     Quartz          DATASET qtz  1.0  cm^2/cm^3
     Kaolinite       0.0  7.73840e-03 cm^2/cm^3

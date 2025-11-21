@@ -19,7 +19,9 @@ def build_reservoir_model(res_params):
     res_params["formatted_grid"] = format_grid(res_params["dx"])
     
     #write reservoir_dataset
-    write_reservoir_dataset(res_params["nx"], res_params["nz"])
+    write_reservoir_dataset(res_params["nx"], res_params["nz"],
+                            avg_phi=res_params["avg_phi"],
+                            avg_calc=res_params["avg_calc"])
     
     #load template
     env = Environment(loader=FileSystemLoader(res_params["template_dir"]))

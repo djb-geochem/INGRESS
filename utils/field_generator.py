@@ -79,7 +79,7 @@ def plot_initial_distribution(nx, nz, name, array):
     fig.savefig(f"reservoir/figures/{name}_initial.png", dpi=100)
 
 def write_reservoir_dataset(nx, nz, avg_phi=0.05, avg_calc=0.01,
-                            calc_is=0.00226853):
+                            calc_is=0.000226853):
     
     vgm = variogram(nx, nz)
     phi = porosity_field(vgm, avg_phi=avg_phi)   

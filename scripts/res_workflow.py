@@ -17,6 +17,7 @@ os.chdir(PROJECT_ROOT)
 
 from utils import load_yaml
 from utils.animate_vtk_series import animate_vtk_series
+from utils.inj_decline_plotter import plot_inj_decline
 from scripts.build_reservoir_model import build_reservoir_model
 
 def main():
@@ -36,10 +37,12 @@ def main():
     
     print(result.stdout)
     
+    plot_inj_decline("reservoir")
+    
     for var in res_params["plot"]:
+        None
         animate_vtk_series(var)
-    
-    
+
 
 if __name__ == "__main__":
     main()
