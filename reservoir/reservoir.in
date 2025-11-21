@@ -143,14 +143,14 @@ CHEMISTRY
       SURFACE_AREA_FUNCTION VOLUME_FRACTION_RATIO
       SURFACE_AREA_VOL_FRAC_POWER 0.199701
       PREFACTOR
-        RATE_CONSTANT -0.30 mol/m^2-sec
+        RATE_CONSTANT -10.30 mol/m^2-sec
         ACTIVATION_ENERGY 14.4
         PREFACTOR_SPECIES H+
           ALPHA 1
         /
       /
       PREFACTOR
-        RATE_CONSTANT -5.81 mol/m^2-sec     
+        RATE_CONSTANT -15.81 mol/m^2-sec     
         ACTIVATION_ENERGY 23.5
       /
     /
@@ -159,14 +159,14 @@ CHEMISTRY
       SURFACE_AREA_FUNCTION VOLUME_FRACTION_RATIO
       SURFACE_AREA_VOL_FRAC_POWER 3.5
       PREFACTOR
-        RATE_CONSTANT -0.30 mol/m^2-sec     
+        RATE_CONSTANT -10.30 mol/m^2-sec     
         ACTIVATION_ENERGY 14.4
         PREFACTOR_SPECIES H+
           ALPHA 1
         /
       /
       PREFACTOR
-        RATE_CONSTANT -5.81 mol/m^2-sec
+        RATE_CONSTANT -15.81 mol/m^2-sec
         ACTIVATION_ENERGY 23.5
       /     
     /
@@ -389,15 +389,15 @@ CONSTRAINT initial_constraint
     Mg++         8.255675e-7      T
     Al+++        5.949386e-5      T
     Na+          0.031377         T
-    CO2(aq)      0.1             T
+    CO2(aq)      0.001             T
  
     Tracer          1.d-30        T
   /
   MINERALS
  
-    Calcite         0.0 0.584059 cm^2/cm^3
-    Calcite_is      0.0  0.145844 cm^2/cm^3
-    SiO2(am)        0.0  7.12172e+03 cm^2/cm^3
+    Calcite         DATASET calc 0.584059 cm^2/cm^3
+    Calcite_is      0.00226853  0.145844 cm^2/cm^3
+    SiO2(am)        0.0  7.12172e+02 cm^2/cm^3
     Quartz          DATASET qtz  1.0  cm^2/cm^3
     Kaolinite       0.0  7.73840e-03 cm^2/cm^3
  
@@ -417,7 +417,7 @@ CONSTRAINT inlet_constraint_1
     Mg++         8.255675e-7      T
     Al+++        5.949386e-5      T
     Na+          0.031377         T
-    CO2(aq)      0.1             T
+    CO2(aq)      0.001             T
  
     Tracer          1.d-10        T
   /
