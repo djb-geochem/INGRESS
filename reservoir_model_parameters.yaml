@@ -3,10 +3,10 @@ len_x: 20000 #metres
 len_z: 300 #metres
 
 nx: 100
-nz: 20
+nz: 40
 
 avg_phi:  0.1
-avg_calc: 0.01
+avg_calc: 0.0001
 
 plot:
   - Porosity

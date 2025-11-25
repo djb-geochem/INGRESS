@@ -71,15 +71,23 @@ def add_h5_dataset(file, name, array):
 
 def plot_initial_distribution(nx, nz, name, array):
     
-    fig = plt.figure()
+    fig = plt.figure(figsize=(6, 5))
     ax = fig.add_subplot(111)
-    
-    ax.imshow(array.transpose()[::-1, :])
-    
+
+    # Plot the array
+    im = ax.imshow(array.transpose()[::-1, :], aspect='auto')
+
+    # Add a horizontal colorbar at the bottom
+    cbar = fig.colorbar(im, ax=ax, orientation='horizontal', pad=0.15)
+    cbar.set_label('Value', fontsize=10)
+
+    fig.tight_layout()
+
     fig.savefig(f"reservoir/figures/{name}_initial.png", dpi=100)
+    plt.close(fig)
 
 def write_reservoir_dataset(nx, nz, avg_phi=0.05, avg_calc=0.01,
-                            calc_is=0.000226853):
+                            calc_is=0.00226853):
     
     vgm = variogram(nx, nz)
     phi = porosity_field(vgm, avg_phi=avg_phi)   

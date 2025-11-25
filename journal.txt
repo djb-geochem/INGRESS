@@ -277,3 +277,9 @@ Could be that cell size gets very small near injection point?
 Put reservoir model workflow into res_workflow.py, combining build_reservoir_model and plot_vtk_heatmap.
 
 Injection decline curve plotting added to res_workflow. Inj decline seems under default parameters to be slightly sigmoid, rather than parabolic as apparently observed in real wells. Will need to play around with setup to see how that affects injection decline.
+
+--- 25/11/25 ---
+
+I think we need to consider externally how reactive surface area might scale with porosity going from expt -> reservoir models.
+
+Constant surface area of SiO2(am) might be leading to observed linear(ish) injectivity decline? 

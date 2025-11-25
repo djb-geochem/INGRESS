@@ -65,6 +65,14 @@ def animate_vtk_series(scalar_name, expt="reservoir", nfiles=0):
     Saves to MP4 using ffmpeg.
     """
     
+    xmin, xmax = 0.1, 20e3
+    
+    nx = 100
+    
+    x_phys = np.logspace(np.log10(xmin), np.log10(xmax), nx)
+    x_tick_values = [0.1, 1, 10, 100, 1000, 10000]
+    x_tick_positions = np.interp(x_tick_values, x_phys, np.arange(nx))
+    
     if not nfiles:
         nfiles = highest_vtk_index(expt=expt)
     
@@ -88,11 +96,15 @@ def animate_vtk_series(scalar_name, expt="reservoir", nfiles=0):
     vmax = expt_frames.max()
     fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,4))
 
-    im = ax.imshow(expt_frames[0], cmap="viridis", origin="lower", aspect="equal",
+    im = ax.imshow(expt_frames[0], cmap="viridis", origin="lower", aspect="auto",
                    vmin=vmin, vmax=vmax)
+    
+    ax.set_xticks(x_tick_positions)
+    
+    ax.set_xticklabels([f"{v:g}" for v in x_tick_values])
+
+    
     ax.set_title(f"{expt}")
-    ax.set_xticks([])
-    ax.set_yticks([])
     cbar = fig.colorbar(im, ax=ax,
                         orientation="horizontal",
                         fraction=0.05, pad=0.2, label=scalar_name)

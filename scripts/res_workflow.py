@@ -33,9 +33,11 @@ def main():
     
     cmd = ["mpirun", "-n", "4", "pflotran", "-input_prefix", "reservoir"]
     
-    result = subprocess.run(cmd, capture_output=True, text=True)
+    print("[INFO] Running Pflotran reservoir model")
     
-    print(result.stdout)
+    # result = subprocess.run(cmd, capture_output=True, text=True)
+    
+    print("[INFO] Pflotran run complete")
     
     plot_inj_decline("reservoir")
     
