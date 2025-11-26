@@ -6,7 +6,7 @@ nx: 100
 nz: 40
 
 avg_phi:  0.1
-avg_calc: 0.0001
+avg_calc: -10.01
 
 plot:
   - Porosity

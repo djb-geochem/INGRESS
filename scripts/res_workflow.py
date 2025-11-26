@@ -25,6 +25,8 @@ def main():
     res_params = load_yaml("reservoir_model_parameters")[0]
     res_params["template_dir"] = PROJECT_ROOT / "templates"
     res_params["output_dir"] = PROJECT_ROOT / "reservoir"
+    res_params["cell_count"] = res_params["nx"] * res_params["nz"]
+    
     
     build_reservoir_model(res_params)
        
@@ -33,11 +35,12 @@ def main():
     
     cmd = ["mpirun", "-n", "4", "pflotran", "-input_prefix", "reservoir"]
     
-    print("[INFO] Running Pflotran reservoir model")
+    print(f"[INFO] Running PFLOTRAN reservoir model - \
+          cell count = {res_params['cell_count']}")
     
-    # result = subprocess.run(cmd, capture_output=True, text=True)
+    result = subprocess.run(cmd, capture_output=True, text=True)
     
-    print("[INFO] Pflotran run complete")
+    print("[INFO] PFLOTRAN run complete")
     
     plot_inj_decline("reservoir")
     

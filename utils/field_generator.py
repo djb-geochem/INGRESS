@@ -95,11 +95,15 @@ def write_reservoir_dataset(nx, nz, avg_phi=0.05, avg_calc=0.01,
       
     qtz = 1 - phi - calc - calc_is
     
+    perm_x = 1e-12 * phi**3 / (1- phi)**2
+    perm_z = 0.1 * perm_x
+    
     reservoir_file = create_h5_file(nx, nz)
     
-    datasets = [phi, calc, qtz]
+    datasets = [phi, calc, qtz, perm_x, perm_x, perm_z]
     
-    names = ["Porosity", "Calcite_VF", "Quartz_VF"]
+    names = ["Porosity", "Calcite_VF", "Quartz_VF",
+             "PermX", "PermY", "PermZ"]
     
     for dataset, name in zip(datasets, names):
         

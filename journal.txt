@@ -283,3 +283,13 @@ Injection decline curve plotting added to res_workflow. Inj decline seems under 
 I think we need to consider externally how reactive surface area might scale with porosity going from expt -> reservoir models.
 
 Constant surface area of SiO2(am) might be leading to observed linear(ish) injectivity decline? 
+
+Tweaked permeability calcs (n = 0.66 rather than n=2.5 seems more sensible?)
+
+Prettified the output videos as well so log scale can be visualised
+
+--- 27/11/25 ---
+
+Added permeability dataset to .h5 file generation
+
+
