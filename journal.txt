@@ -298,6 +298,14 @@ Reservoir model is looking pretty good now. Inj decline curve looks plausible.
 
 Does calcite_is need to be heterogeneous? How do we incorporate that alongside the base calcite distribution?
 
+Fixed issue with injectivity units - plot is now in tonnes/day and labelled as such.
+Values seem plausible but will check with JM.
 
+Adjusted initial mineral surface areas to account for porosity difference using:
+a = a0*((1-phi)/(1-phi0))**n
+where n=2/3
+This slows inj decline right down, not sure if useful?
+
+POROSITY_RATIO surface area function appears to not be working as per pflotran user guide. Think it is as above eqn instead?
 
 

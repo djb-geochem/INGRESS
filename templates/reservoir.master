@@ -117,7 +117,8 @@ CHEMISTRY
     /
     
     Quartz
-      SURFACE_AREA_FUNCTION CONSTANT
+      SURFACE_AREA_FUNCTION POROSITY_RATIO
+      SURFACE_AREA_POROSITY_POWER 2.0
       RATE_CONSTANT 0.0
     /
     
@@ -154,7 +155,8 @@ CHEMISTRY
     /
 
     SiO2(am)
-      SURFACE_AREA_FUNCTION CONSTANT
+      SURFACE_AREA_FUNCTION POROSITY_RATIO
+      SURFACE_AREA_POROSITY_POWER 0.67
       PREFACTOR
         RATE_CONSTANT -12.5 mol/m^2-sec
         ACTIVATION_ENERGY 74.5
@@ -172,10 +174,6 @@ CHEMISTRY
   ACTIVITY_COEFFICIENTS TIMESTEP
   OUTPUT
     PH
-    H2SiO4--
-    H3SiO4-
-    CO2(g)
-    HCO3-
     TOTAL
     ALL
     MINERAL_SURFACE_AREA
@@ -381,9 +379,9 @@ CONSTRAINT initial_constraint
  
     Calcite         DATASET calc 0.584059 cm^2/cm^3
     Calcite_is      0.00226853  0.145844 cm^2/cm^3
-    SiO2(am)        0.0  7.12172e+03 cm^2/cm^3
+    SiO2(am)        0.0  7121.72 cm^2/cm^3
     Quartz          DATASET qtz  1.0  cm^2/cm^3
-    Kaolinite       0.0  7.73840e-03 cm^2/cm^3
+    Kaolinite       0.0  0.0077384 cm^2/cm^3
  
   /
 END

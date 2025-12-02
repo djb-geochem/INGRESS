@@ -49,15 +49,15 @@ def plot_inj_decline(expt, nfiles=438):
         
         flux = avg_vel * area #m^3/s
         
-        flux_t_d = flux*60*60*24
+        flux_t_hr = flux*60*60
         
-        fluxes.append(flux_t_d)
+        fluxes.append(flux_t_hr)
         
     x = np.array(range(len(fluxes))) * 100/24
     
     ax.plot(x, fluxes, 'r-')
     
-    ax.set_ylabel(r"$Injectivity\,\,(t/d)$")
+    ax.set_ylabel(r"$Injectivity\,\,(t/hr)$")
     ax.set_xlabel(r"$Time\,\,(d)$")    
     fig.savefig("figures/inj_decline.png")
 
@@ -81,4 +81,4 @@ def test():
     ax.plot(range(len(vels)), vels)
 
 
-plot_inj_decline("reservoir")
+# plot_inj_decline("reservoir")
