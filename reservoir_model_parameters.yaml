@@ -3,10 +3,10 @@ len_x: 20000 #metres
 len_z: 300 #metres
 
 nx: 100
-nz: 40
+nz: 100
 
 avg_phi:  0.1
-avg_calc: -10.01
+avg_calc: 0.01
 
 plot:
   - Porosity
@@ -18,3 +18,4 @@ plot:
   - Liquid_Pressure
   - Vlx
   - Vlz
+  - Calcite_is_VF

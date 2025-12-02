@@ -28,7 +28,7 @@ END
 #=========================== discretization ===================================
 GRID
   TYPE STRUCTURED CYLINDRICAL
-  NXYZ 100 1 40
+  NXYZ 100 1 100
   ORIGIN 0.1 0. 0.
   DXYZ
     1.2982271e-02 1.46676646e-02 1.65718605e-02 1.87232644e-02 2.11539693e-02 \
@@ -52,7 +52,7 @@ GRID
     7.66086248e+02 8.65541640e+02 9.77908601e+02 1.10486335e+03 1.2482997e+03 \
     1.41035735e+03 1.59345376e+03 1.80032025e+03 2.03404270e+03 2.29810764e+03 
     1.
-    7.5
+    3.0
   /
 END
 
@@ -246,10 +246,12 @@ CHARACTERISTIC_CURVES matrix
 OUTPUT
   PERIODIC TIME 100 h
   FORMAT VTK
+  TIME_UNITS s
   VARIABLES
      POROSITY
      TORTUOSITY
-     PERMEABILITY
+     PERMEABILITY_X
+     PERMEABILITY_Z
      LIQUID_PRESSURE
      TEMPERATURE
   END
@@ -418,7 +420,7 @@ CONSTRAINT inlet_constraint_1
     Mg++         8.255675e-7      T
     Al+++        5.949386e-5      T
     Na+          0.031377         T
-    CO2(aq)      0.001             T
+    CO2(aq)      0.1             T
  
     Tracer          1.d-10        T
   /

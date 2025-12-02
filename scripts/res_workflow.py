@@ -38,7 +38,7 @@ def main():
     print(f"[INFO] Running PFLOTRAN reservoir model - \
           cell count = {res_params['cell_count']}")
     
-    result = subprocess.run(cmd, capture_output=True, text=True)
+    # result = subprocess.run(cmd, capture_output=True, text=True)
     
     print("[INFO] PFLOTRAN run complete")
     
@@ -46,7 +46,7 @@ def main():
     
     for var in res_params["plot"]:
         None
-        animate_vtk_series(var)
+        # animate_vtk_series(var)
 
 
 if __name__ == "__main__":

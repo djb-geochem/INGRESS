@@ -227,10 +227,12 @@ CHARACTERISTIC_CURVES matrix
 OUTPUT
   PERIODIC TIME 100 h
   FORMAT VTK
+  TIME_UNITS s
   VARIABLES
      POROSITY
      TORTUOSITY
-     PERMEABILITY
+     PERMEABILITY_X
+     PERMEABILITY_Z
      LIQUID_PRESSURE
      TEMPERATURE
   END
@@ -399,7 +401,7 @@ CONSTRAINT inlet_constraint_1
     Mg++         8.255675e-7      T
     Al+++        5.949386e-5      T
     Na+          0.031377         T
-    CO2(aq)      0.001             T
+    CO2(aq)      0.1             T
  
     Tracer          1.d-10        T
   /

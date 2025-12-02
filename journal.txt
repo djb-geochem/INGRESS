@@ -292,4 +292,12 @@ Prettified the output videos as well so log scale can be visualised
 
 Added permeability dataset to .h5 file generation
 
+--- 02/12/25 ---
+
+Reservoir model is looking pretty good now. Inj decline curve looks plausible.
+
+Does calcite_is need to be heterogeneous? How do we incorporate that alongside the base calcite distribution?
+
+
+
 
